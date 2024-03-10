@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwjbd1hqnu6tb"]
+
+[ext_resource type="Texture2D" uid="uid://bfacv25jy6acl" path="res://environment/mound/mound.png" id="1_eti8o"]
+
+[node name="Mound" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_eti8o")

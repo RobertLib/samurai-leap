@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkkkc5vkfdm3p"]
+
+[ext_resource type="Script" uid="uid://ckrai7lxxi150" path="res://traps/boulder/boulder.gd" id="1_tvdre"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6l5hx"]
+radius = 17.0
+
+[node name="Boulder" type="StaticBody2D" groups=["Traps"]]
+collision_layer = 64
+script = ExtResource("1_tvdre")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.470588, 0.470588, 0.470588, 1)
+polygon = PackedVector2Array(-18, 4, -13, -9, -4, -15, 11, -16, 16, -6, 16, 5, 4, 6, -8, 11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6l5hx")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-25, -25, 50, 50)

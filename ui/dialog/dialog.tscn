@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpvg6pua353aq"]
+
+[ext_resource type="Script" uid="uid://boql82tjw2ssb" path="res://ui/dialog/dialog.gd" id="1_0sfpx"]
+
+[node name="Dialog" type="CanvasLayer"]
+script = ExtResource("1_0sfpx")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 175.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.145884, 0.29171, 0.240955, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 26
+autowrap_mode = 3

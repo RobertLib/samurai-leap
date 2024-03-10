@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxft8j8ot4on6"]
+
+[ext_resource type="Script" uid="uid://d20erxcsispgm" path="res://weapons/throwing_bamboo/throwing_bamboo.gd" id="1_evtw8"]
+[ext_resource type="Texture2D" uid="uid://c5ob1k3s1e34v" path="res://weapons/throwing_bamboo/throwing_bamboo.png" id="1_tdwj3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_208fj"]
+size = Vector2(55, 5)
+
+[node name="ThrowingBamboo" type="Area2D"]
+collision_layer = 16
+collision_mask = 4
+script = ExtResource("1_evtw8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_tdwj3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_208fj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

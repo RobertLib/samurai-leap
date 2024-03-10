@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctw51lipl2m6o"]
+
+[ext_resource type="VideoStream" uid="uid://1ljjgoamak6u" path="res://intro/comics_01.ogv" id="1_16jw6"]
+[ext_resource type="Script" uid="uid://blevummk5yxps" path="res://intro/intro.gd" id="1_wt0xn"]
+
+[node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_wt0xn")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+stream = ExtResource("1_16jw6")
+autoplay = true
+expand = true
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

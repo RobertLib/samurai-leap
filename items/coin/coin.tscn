@@ -1,0 +1,118 @@
+[gd_scene load_steps=12 format=3 uid="uid://bs8pc5d6mus8s"]
+
+[ext_resource type="Texture2D" uid="uid://4picxs30bdlv" path="res://items/coin/coins.png" id="1_jdf0n"]
+[ext_resource type="Script" uid="uid://dbp6led4ifj0x" path="res://items/coin/coin.gd" id="1_m270v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3rsxi"]
+radius = 30.0
+
+[sub_resource type="Animation" id="Animation_u318q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kqlt6"]
+resource_name = "move_up_down"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2.08165e-12, -10), Vector2(2.08165e-12, 2.08165e-12), Vector2(2.08165e-12, 10), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fcvvt"]
+resource_name = "rotate"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(-1, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qdmw1"]
+_data = {
+&"RESET": SubResource("Animation_u318q"),
+&"move_up_down": SubResource("Animation_kqlt6"),
+&"rotate": SubResource("Animation_fcvvt")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wrgvl"]
+animation = &"rotate"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dqki4"]
+animation = &"move_up_down"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_0542w"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lnkeh"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_dqki4")
+nodes/Animation/position = Vector2(-105.263, 94.7368)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_wrgvl")
+"nodes/Animation 2/position" = Vector2(-63.1579, 252.632)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_0542w")
+nodes/Blend2/position = Vector2(126.316, 136.842)
+node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"output", 0, &"Blend2"]
+
+[node name="Coin" type="Area2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+collision_layer = 8
+script = ExtResource("1_m270v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_jdf0n")
+region_enabled = true
+region_rect = Rect2(-5, 2.08165e-12, 340, 340)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3rsxi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qdmw1")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_lnkeh")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Blend2/blend_amount = 0.5
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

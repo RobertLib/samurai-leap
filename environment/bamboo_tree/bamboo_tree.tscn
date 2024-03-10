@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://4djligpdxe7a"]
+
+[ext_resource type="Script" uid="uid://b3iyj5odmb7ia" path="res://environment/bamboo_tree/bamboo_tree.gd" id="1_6hk1t"]
+[ext_resource type="Shader" uid="uid://bsassyo5fhnpt" path="res://environment/bamboo_tree/bamboo_tree.gdshader" id="2_ycryk"]
+[ext_resource type="Texture2D" uid="uid://2ry74evy04n8" path="res://environment/bamboo_tree/bamboo_tree.png" id="3_0b70p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0o66"]
+shader = ExtResource("2_ycryk")
+shader_parameter/wave_speed = 1.0
+shader_parameter/wave_amplitude = 5.0
+shader_parameter/wave_frequency = 2.0
+shader_parameter/time = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_addk1"]
+size = Vector2(130, 325)
+
+[node name="BambooTree" type="Area2D" groups=["Environment"]]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_6hk1t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_u0o66")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_0b70p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_addk1")
