@@ -3,10 +3,24 @@ extends CharacterBody2D
 const SPEED := 300.0
 const JUMP_VELOCITY := -400.0
 
+var last_direction = 1
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+var start_position := Vector2.ZERO
 
-# @onready var sprite := $Sprite2D as Sprite2D
+@onready var animation_tree := $AnimationTree as AnimationTree
+
+
+func _ready():
+	animation_tree.active = true
+	start_position = position
+
+
+func _process(_delta: float):
+	update_animation_parameters()
+
+	if position.y >= 830:
+		position = start_position
 
 
 func _physics_process(delta: float):
@@ -23,12 +37,21 @@ func _physics_process(delta: float):
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
+		last_direction = direction
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	# Automatically flip the character based on the movement direction.
-	if velocity.x:
-		# sprite.flip_h = velocity.x < 0
-		pass
-
 	move_and_slide()
+
+
+func update_animation_parameters():
+	if velocity == Vector2.ZERO:
+		animation_tree["parameters/conditions/idle"] = true
+		animation_tree["parameters/conditions/is_moving"] = false
+	else:
+		animation_tree["parameters/conditions/idle"] = false
+		animation_tree["parameters/conditions/is_moving"] = true
+
+	if last_direction:
+		animation_tree["parameters/Idle/blend_position"] = Vector2(last_direction, 0)
+		animation_tree["parameters/Walk/blend_position"] = Vector2(last_direction, 0)
