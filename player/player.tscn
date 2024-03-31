@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://player/player.gd" id="1_ukkd8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c28yk"]
-radius = 115.0
+radius = 100.0
 height = 475.0
 
 [sub_resource type="Animation" id="Animation_dd1p2"]
@@ -1942,6 +1942,7 @@ graph_offset = Vector2(146.586, -19.674)
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.3, 0.3)
+collision_mask = 6
 script = ExtResource("1_ukkd8")
 
 [node name="Container" type="Node2D" parent="."]

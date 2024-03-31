@@ -3,7 +3,7 @@ extends CharacterBody2D
 const SPEED := 300.0
 const JUMP_VELOCITY := -400.0
 
-var last_direction = 1
+var last_direction := 1.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var start_position := Vector2.ZERO
@@ -42,6 +42,13 @@ func _physics_process(delta: float):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+	# Check for collision
+	for i in range(get_slide_collision_count()):
+		var collision := get_slide_collision(i)
+
+		if collision:
+			print(collision.get_collider().get_groups())
 
 
 func update_animation_parameters():

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dctwetuw54i4s"]
+
+[ext_resource type="Script" path="res://enemies/blob/blob.gd" id="1_axm3p"]
+[ext_resource type="Texture2D" uid="uid://dya7fy2r6ii8s" path="res://enemies/blob/blob.png" id="1_i2jmm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bi4f5"]
+radius = 33.0
+
+[node name="Blob" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_axm3p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_i2jmm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bi4f5")
+
+[node name="RayCast_Left" type="RayCast2D" parent="."]
+position = Vector2(-40, 0)
+collision_mask = 2
+
+[node name="RayCast_Right" type="RayCast2D" parent="."]
+position = Vector2(40, 0)
+collision_mask = 2
