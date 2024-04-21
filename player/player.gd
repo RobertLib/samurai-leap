@@ -48,7 +48,7 @@ func _physics_process(delta: float):
 		var collision := get_slide_collision(i)
 
 		if collision:
-			print(collision.get_collider().get_groups())
+			pass
 
 
 func update_animation_parameters():
