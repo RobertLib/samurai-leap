@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://wrsj1744g817"]
+
+[ext_resource type="Texture2D" uid="uid://rli7x0sqb5d8" path="res://ui/control/control.png" id="2_4q0h0"]
+
+[node name="Control" type="CanvasLayer"]
+
+[node name="LeftBtn" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.470588)
+position = Vector2(40, 520)
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("2_4q0h0")
+action = "ui_left"
+
+[node name="RightBtn" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.470588)
+position = Vector2(160, 520)
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("2_4q0h0")
+action = "ui_right"
+
+[node name="UpBtn" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.470588)
+position = Vector2(1024, 520)
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("2_4q0h0")
+action = "ui_up"

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvueq8wcb6yit"]
+[gd_scene load_steps=9 format=3 uid="uid://cvueq8wcb6yit"]
 
 [ext_resource type="Texture2D" uid="uid://dqqnb74qa60hv" path="res://levels/level1/tiles.png" id="1_icdpp"]
 [ext_resource type="Texture2D" uid="uid://vw00yotwrr5w" path="res://levels/level1/background.png" id="1_jv3xj"]
 [ext_resource type="PackedScene" uid="uid://dctwetuw54i4s" path="res://enemies/blob/blob.tscn" id="2_bdnrd"]
 [ext_resource type="PackedScene" uid="uid://c4jkl1ksuippr" path="res://player/player.tscn" id="2_qy5kv"]
 [ext_resource type="PackedScene" uid="uid://bs8pc5d6mus8s" path="res://items/coin/coin.tscn" id="4_f8o4n"]
+[ext_resource type="PackedScene" uid="uid://wrsj1744g817" path="res://ui/control/control.tscn" id="6_bkw4y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eg17b"]
 texture = ExtResource("1_icdpp")
@@ -543,3 +544,5 @@ motion_scale = Vector2(0.9, 0.9)
 [node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(1456, 2.08165e-12)
 texture = ExtResource("1_jv3xj")
+
+[node name="Control" parent="." instance=ExtResource("6_bkw4y")]
