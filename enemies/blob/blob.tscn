@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_bi4f5"]
 radius = 33.0
 
-[node name="Blob" type="CharacterBody2D"]
+[node name="Blob" type="CharacterBody2D" groups=["Blob"]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_axm3p")

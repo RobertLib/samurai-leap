@@ -17,7 +17,7 @@ func _ready():
 
 
 func _process(_delta: float):
-	update_animation_parameters()
+	_update_animation_parameters()
 
 	if position.y >= 830:
 		position = start_position
@@ -48,10 +48,28 @@ func _physics_process(delta: float):
 		var collision := get_slide_collision(i)
 
 		if collision:
-			pass
+			if collision.get_collider().is_in_group("Blob"):
+				_on_collision_with_blob(collision.get_collider())
 
 
-func update_animation_parameters():
+func _on_collision_with_blob(blob: CharacterBody2D):
+	_bounce_off_the_blob(blob)
+
+
+func _bounce_off_the_blob(blob: CharacterBody2D):
+	# Calculate the bounce direction based on the relative position of the blob
+	var bounce_direction = sign(position.x - blob.position.x)
+
+	# Set the bounce speed and direction
+	var bounce_speed = SPEED * 4
+	velocity.x = bounce_direction * bounce_speed
+	velocity.y = JUMP_VELOCITY * 0.5
+
+	# Move the player a bit to avoid getting stuck
+	position.x += bounce_direction * 10
+
+
+func _update_animation_parameters():
 	if velocity == Vector2.ZERO:
 		animation_tree["parameters/conditions/idle"] = true
 		animation_tree["parameters/conditions/is_moving"] = false
