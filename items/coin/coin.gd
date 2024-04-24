@@ -1,3 +1,5 @@
+class_name Coin
+
 extends Area2D
 
 @export_range(0, 2) var frame := 0

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://macijckvfma0"]
+
+[ext_resource type="Script" path="res://ui/navbar/navbar.gd" id="1_gdarh"]
+
+[node name="Navbar" type="CanvasLayer"]
+script = ExtResource("1_gdarh")
+
+[node name="Lives" type="Label" parent="."]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 141.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 30
+text = "LIVES: 3"

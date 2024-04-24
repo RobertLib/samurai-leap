@@ -1,3 +1,5 @@
+class_name Player
+
 extends CharacterBody2D
 
 const SPEED := 300.0
@@ -7,13 +9,34 @@ var last_direction := 1.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var start_position := Vector2.ZERO
+var lives := 3
+var is_immortal := false
+var immortal_blink_time := 0.1
+var blink_timer: Timer
+var immortal_timer: Timer
 
 @onready var animation_tree := $AnimationTree as AnimationTree
+@onready var navbar := get_node("/root/Level/Navbar") as Navbar
+@onready var player_container := $Container as Node2D
 
 
 func _ready():
 	animation_tree.active = true
 	start_position = position
+
+	# Setting timer for immortality
+	immortal_timer = Timer.new()
+	immortal_timer.wait_time = 5.0  # Time of immortality
+	immortal_timer.one_shot = true
+	immortal_timer.connect("timeout", Callable(self, "_end_immortality"))
+	add_child(immortal_timer)
+
+	# Setting timer for flashing
+	blink_timer = Timer.new()
+	blink_timer.wait_time = immortal_blink_time
+	blink_timer.one_shot = false
+	blink_timer.connect("timeout", Callable(self, "_toggle_blink"))
+	add_child(blink_timer)
 
 
 func _process(_delta: float):
@@ -53,20 +76,25 @@ func _physics_process(delta: float):
 
 
 func _on_collision_with_blob(blob: CharacterBody2D):
-	_bounce_off_the_blob(blob)
+	if not is_immortal:
+		_bounce_off_the_blob(blob)
+		_subtract_life()
+		_start_immortality()
 
 
 func _bounce_off_the_blob(blob: CharacterBody2D):
-	# Calculate the bounce direction based on the relative position of the blob
-	var bounce_direction = sign(position.x - blob.position.x)
+	var direction := (position - (blob.position - blob.velocity)).normalized()
 
-	# Set the bounce speed and direction
-	var bounce_speed = SPEED * 4
-	velocity.x = bounce_direction * bounce_speed
-	velocity.y = JUMP_VELOCITY * 0.5
+	velocity = direction * SPEED
 
-	# Move the player a bit to avoid getting stuck
-	position.x += bounce_direction * 10
+
+func _subtract_life():
+	lives -= 1
+
+	navbar.update_lives(lives)
+
+	if lives == 0:
+		get_tree().reload_current_scene()
 
 
 func _update_animation_parameters():
@@ -80,3 +108,22 @@ func _update_animation_parameters():
 	if last_direction:
 		animation_tree["parameters/Idle/blend_position"] = Vector2(last_direction, 0)
 		animation_tree["parameters/Walk/blend_position"] = Vector2(last_direction, 0)
+
+
+func _start_immortality():
+	is_immortal = true
+	immortal_timer.start()
+	blink_timer.start()
+
+
+func _end_immortality():
+	is_immortal = false
+	blink_timer.stop()
+	player_container.modulate.a = 1.0
+
+
+func _toggle_blink():
+	if player_container.modulate.a == 1.0:
+		player_container.modulate.a = 0.6
+	else:
+		player_container.modulate.a = 1.0
