@@ -18,4 +18,5 @@ func _process(_delta):
 
 
 func _on_body_entered(_body):
+	SoundManager.play_sound("hero_health_picked_up")
 	queue_free()

@@ -14,6 +14,7 @@ var is_immortal := false
 var immortal_blink_time := 0.1
 var blink_timer: Timer
 var immortal_timer: Timer
+var touched_ground := false
 
 @onready var animation_tree := $AnimationTree as AnimationTree
 @onready var navbar := get_node("/root/Level/Navbar") as Navbar
@@ -48,12 +49,18 @@ func _process(_delta: float):
 
 func _physics_process(delta: float):
 	# Add the gravity.
-	if not is_on_floor():
+	if is_on_floor():
+		if not touched_ground:
+			touched_ground = true
+			SoundManager.play_sound("hero_jump_land")
+	else:
 		velocity.y += gravity * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
+		touched_ground = false
 		velocity.y = JUMP_VELOCITY
+		SoundManager.play_sound("hero_jump")
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -81,11 +88,14 @@ func _on_collision_with_blob(blob: CharacterBody2D):
 		_subtract_life()
 		_start_immortality()
 
+		SoundManager.play_sound("hero_got_hit")
+
 
 func _bounce_off_the_blob(blob: CharacterBody2D):
 	var direction := (position - (blob.position - blob.velocity)).normalized()
-
 	velocity = direction * SPEED
+
+	SoundManager.play_sound("hero_boundced_off_enemy")
 
 
 func _subtract_life():
@@ -99,25 +109,27 @@ func _subtract_life():
 
 func _update_animation_parameters():
 	if velocity == Vector2.ZERO:
-		animation_tree["parameters/conditions/idle"] = true
-		animation_tree["parameters/conditions/is_moving"] = false
+		animation_tree.set("parameters/conditions/idle", true)
+		animation_tree.set("parameters/conditions/is_moving", false)
 	else:
-		animation_tree["parameters/conditions/idle"] = false
-		animation_tree["parameters/conditions/is_moving"] = true
+		animation_tree.set("parameters/conditions/idle", false)
+		animation_tree.set("parameters/conditions/is_moving", true)
 
 	if last_direction:
-		animation_tree["parameters/Idle/blend_position"] = Vector2(last_direction, 0)
-		animation_tree["parameters/Walk/blend_position"] = Vector2(last_direction, 0)
+		animation_tree.set("parameters/Idle/blend_position", Vector2(last_direction, 0))
+		animation_tree.set("parameters/Walk/blend_position", Vector2(last_direction, 0))
 
 
 func _start_immortality():
 	is_immortal = true
+	set_collision_mask_value(3, false)
 	immortal_timer.start()
 	blink_timer.start()
 
 
 func _end_immortality():
 	is_immortal = false
+	set_collision_mask_value(3, true)
 	blink_timer.stop()
 	player_container.modulate.a = 1.0
 

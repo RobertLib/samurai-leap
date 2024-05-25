@@ -15,6 +15,10 @@ run/main_scene="res://levels/level1/level.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SoundManager="*res://scripts/sound_manager.gd"
+
 [display]
 
 window/stretch/mode="canvas_items"
