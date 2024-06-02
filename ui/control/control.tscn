@@ -20,7 +20,14 @@ action = "ui_right"
 
 [node name="UpBtn" type="TouchScreenButton" parent="."]
 modulate = Color(1, 1, 1, 0.470588)
-position = Vector2(1024, 520)
+position = Vector2(904, 520)
 scale = Vector2(0.3, 0.3)
 texture_normal = ExtResource("2_4q0h0")
 action = "ui_up"
+
+[node name="AttackBtn" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.470588)
+position = Vector2(1024, 520)
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("2_4q0h0")
+action = "attack"

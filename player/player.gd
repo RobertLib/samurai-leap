@@ -15,10 +15,12 @@ var immortal_blink_time := 0.1
 var blink_timer: Timer
 var immortal_timer: Timer
 var touched_ground := false
+var is_attacking := false
 
 @onready var animation_tree := $AnimationTree as AnimationTree
 @onready var navbar := get_node("/root/Level/Navbar") as Navbar
 @onready var player_container := $Container as Node2D
+@onready var attack_area := $Container/AttackArea as Area2D
 
 
 func _ready():
@@ -38,6 +40,9 @@ func _ready():
 	blink_timer.one_shot = false
 	blink_timer.connect("timeout", Callable(self, "_toggle_blink"))
 	add_child(blink_timer)
+
+	# Connect attack area signals
+	attack_area.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
 
 
 func _process(_delta: float):
@@ -62,6 +67,10 @@ func _physics_process(delta: float):
 		velocity.y = JUMP_VELOCITY
 		SoundManager.play_sound("hero_jump")
 
+	# Handle attack
+	if Input.is_action_just_pressed("attack") and not is_attacking:
+		_start_attack()
+
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
@@ -78,24 +87,38 @@ func _physics_process(delta: float):
 		var collision := get_slide_collision(i)
 
 		if collision:
-			if collision.get_collider().is_in_group("Blob"):
-				_on_collision_with_blob(collision.get_collider())
+			if collision.get_collider().is_in_group("Enemies"):
+				_on_collision_with_enemy(collision.get_collider())
 
 
-func _on_collision_with_blob(blob: CharacterBody2D):
+func _start_attack():
+	is_attacking = true
+	attack_area.set_monitoring(true)  # Enable attack area monitoring
+	# SoundManager.play_sound("hero_attack")
+	await get_tree().create_timer(0.5).timeout  # Duration of the attack animation
+	is_attacking = false
+	attack_area.set_monitoring(false)  # Disable attack area monitoring
+
+
+func _on_attack_area_body_entered(body: CharacterBody2D):
+	if body.is_in_group("Enemies"):
+		body.take_damage(1)
+
+
+func _on_collision_with_enemy(enemy: CharacterBody2D):
 	if not is_immortal:
-		_bounce_off_the_blob(blob)
+		_bounce_off_the_enemy(enemy)
 		_subtract_life()
 		_start_immortality()
 
 		SoundManager.play_sound("hero_got_hit")
 
 
-func _bounce_off_the_blob(blob: CharacterBody2D):
-	var direction := (position - (blob.position - blob.velocity)).normalized()
+func _bounce_off_the_enemy(enemy: CharacterBody2D):
+	var direction := (position - (enemy.position - enemy.velocity)).normalized()
 	velocity = direction * SPEED
 
-	SoundManager.play_sound("hero_boundced_off_enemy")
+	SoundManager.play_sound("hero_bounced_off_enemy")
 
 
 func _subtract_life():
@@ -108,16 +131,24 @@ func _subtract_life():
 
 
 func _update_animation_parameters():
-	if velocity == Vector2.ZERO:
-		animation_tree.set("parameters/conditions/idle", true)
+	if is_attacking:
+		animation_tree.set("parameters/conditions/is_attack", true)
+		animation_tree.set("parameters/conditions/idle", false)
 		animation_tree.set("parameters/conditions/is_moving", false)
 	else:
-		animation_tree.set("parameters/conditions/idle", false)
-		animation_tree.set("parameters/conditions/is_moving", true)
+		animation_tree.set("parameters/conditions/is_attack", false)
+
+		if velocity == Vector2.ZERO:
+			animation_tree.set("parameters/conditions/idle", true)
+			animation_tree.set("parameters/conditions/is_moving", false)
+		else:
+			animation_tree.set("parameters/conditions/idle", false)
+			animation_tree.set("parameters/conditions/is_moving", true)
 
 	if last_direction:
 		animation_tree.set("parameters/Idle/blend_position", Vector2(last_direction, 0))
 		animation_tree.set("parameters/Walk/blend_position", Vector2(last_direction, 0))
+		animation_tree.set("parameters/Attack/blend_position", Vector2(last_direction, 0))
 
 
 func _start_immortality():

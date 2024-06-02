@@ -44,3 +44,7 @@ func _physics_process(delta: float):
 				break  # Exit the loop as we have already processed the collision
 
 	move_and_slide()
+
+
+func take_damage(_damage: int):
+	pass
