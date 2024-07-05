@@ -3,6 +3,7 @@ class_name Navbar
 extends CanvasLayer
 
 @onready var lives_label := $Lives as Label
+@onready var crystals_label := $Crystals as Label
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,3 +18,7 @@ func _process(_delta: float):
 
 func update_lives(lives: int) -> void:
 	lives_label.text = "LIVES: " + str(lives)
+
+
+func update_crystals(crystals: int) -> void:
+	crystals_label.text = "CRYSTALS: " + str(crystals)

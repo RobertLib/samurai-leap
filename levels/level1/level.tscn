@@ -515,6 +515,7 @@ position = Vector2(615, 600)
 
 [node name="Blob2" parent="Enemies" instance=ExtResource("2_bdnrd")]
 position = Vector2(975, 535)
+state = 1
 
 [node name="Blob3" parent="Enemies" instance=ExtResource("2_bdnrd")]
 position = Vector2(2015, 535)

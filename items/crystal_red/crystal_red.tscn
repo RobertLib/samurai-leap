@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh8tc3rrngkhr"]
+
+[ext_resource type="Texture2D" uid="uid://x0ci0wq1s3xx" path="res://items/crystal_red/crystal_red.png" id="1_qjg54"]
+
+[node name="CrystalRed" type="RigidBody2D" groups=["Crystals"]]
+z_index = 1
+collision_layer = 8
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_qjg54")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -24, 13, -24, 22, -8, 19, 14, 21, 16, 22, 19, 18, 22, 11, 23, 6, 23, 1, 23, -4, 24, -9, 24, -16, 24, -20, 23, -21, 21, -22, 20, -21, 19, -20, 17, -19, 17, -17, -4)

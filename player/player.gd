@@ -16,6 +16,7 @@ var blink_timer: Timer
 var immortal_timer: Timer
 var touched_ground := false
 var is_attacking := false
+var crystals := 0
 
 @onready var animation_tree := $AnimationTree as AnimationTree
 @onready var navbar := get_node("/root/Level/Navbar") as Navbar
@@ -89,6 +90,8 @@ func _physics_process(delta: float):
 		if collision:
 			if collision.get_collider().is_in_group("Enemies"):
 				_on_collision_with_enemy(collision.get_collider())
+			if collision.get_collider().is_in_group("Crystals"):
+				_on_collision_with_crystal(collision.get_collider())
 
 
 func _start_attack():
@@ -108,11 +111,20 @@ func _on_attack_area_body_entered(body: CharacterBody2D):
 
 func _on_collision_with_enemy(enemy: CharacterBody2D):
 	if not is_immortal:
-		_bounce_off_the_enemy(enemy)
-		_subtract_life()
-		_start_immortality()
+		if enemy is Blob:
+			if enemy.state == enemy.BlobState.EVIL:
+				_bounce_off_the_enemy(enemy)
+				_subtract_life()
+				_start_immortality()
 
-		SoundManager.play_sound("hero_got_hit")
+				SoundManager.play_sound("hero_got_hit")
+
+
+func _on_collision_with_crystal(crystal: RigidBody2D):
+	crystal.queue_free()
+	crystals += 1
+
+	navbar.update_crystals(crystals)
 
 
 func _bounce_off_the_enemy(enemy: CharacterBody2D):
