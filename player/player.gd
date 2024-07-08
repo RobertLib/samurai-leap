@@ -25,6 +25,8 @@ var crystals := 0
 
 
 func _ready():
+	randomize()
+
 	animation_tree.active = true
 	start_position = position
 
@@ -100,7 +102,7 @@ func _start_attack():
 	attack_area.set_monitoring(true)  # Enable attack area monitoring
 	await get_tree().create_timer(0.3).timeout
 	attack_area.set_monitoring(false)  # Disable attack area monitoring
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.1).timeout
 	is_attacking = false
 
 
@@ -144,24 +146,27 @@ func _subtract_life():
 
 
 func _update_animation_parameters():
+	animation_tree.set("parameters/conditions/idle", false)
+	animation_tree.set("parameters/conditions/is_moving", false)
+	animation_tree.set("parameters/conditions/is_attack", false)
+
 	if is_attacking:
 		animation_tree.set("parameters/conditions/is_attack", true)
-		animation_tree.set("parameters/conditions/idle", false)
-		animation_tree.set("parameters/conditions/is_moving", false)
 	else:
-		animation_tree.set("parameters/conditions/is_attack", false)
-
 		if velocity == Vector2.ZERO:
 			animation_tree.set("parameters/conditions/idle", true)
-			animation_tree.set("parameters/conditions/is_moving", false)
 		else:
-			animation_tree.set("parameters/conditions/idle", false)
 			animation_tree.set("parameters/conditions/is_moving", true)
 
 	if last_direction:
 		animation_tree.set("parameters/Idle/blend_position", Vector2(last_direction, 0))
-		animation_tree.set("parameters/Walk/blend_position", Vector2(last_direction, 0))
-		animation_tree.set("parameters/Attack/blend_position", Vector2(last_direction, 0))
+		animation_tree.set(
+			"parameters/Move/blend_position", Vector2(last_direction, 0 if is_on_floor() else 1)
+		)
+		animation_tree.set(
+			"parameters/Attack/blend_position",
+			Vector2(last_direction, 0 if velocity == Vector2.ZERO else 1)
+		)
 
 
 func _start_immortality():

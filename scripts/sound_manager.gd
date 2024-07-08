@@ -9,6 +9,7 @@ func _ready():
 	sounds["hero_health_picked_up"] = preload("res://audio/hero_health_picked_up.ogg")
 	sounds["hero_jump"] = preload("res://audio/hero_jump.ogg")
 	sounds["hero_jump_land"] = preload("res://audio/hero_jump_land.ogg")
+	sounds["enemy_eating"] = preload("res://audio/enemy_eating.ogg")
 
 
 func play_sound(sound_name: String):

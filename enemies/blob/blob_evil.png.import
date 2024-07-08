@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dya7fy2r6ii8s"
-path="res://.godot/imported/blob.png-3181b5c5ac3d6bd2f5383fb51b4d2f4d.ctex"
+uid="uid://c3v3vtlljm51p"
+path="res://.godot/imported/blob_evil.png-91eb222b10d4f46b08f4574dcf407035.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/blob/blob.png"
-dest_files=["res://.godot/imported/blob.png-3181b5c5ac3d6bd2f5383fb51b4d2f4d.ctex"]
+source_file="res://enemies/blob/blob_evil.png"
+dest_files=["res://.godot/imported/blob_evil.png-91eb222b10d4f46b08f4574dcf407035.ctex"]
 
 [params]
 
