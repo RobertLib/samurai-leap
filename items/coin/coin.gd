@@ -13,10 +13,10 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(_delta: float):
 	pass
 
 
-func _on_body_entered(_body):
+func _on_body_entered(_body: Node2D):
 	SoundManager.play_sound("hero_health_picked_up")
 	queue_free()

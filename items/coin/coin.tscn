@@ -93,6 +93,7 @@ node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"
 
 [node name="Coin" type="Area2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
+collision_layer = 8
 script = ExtResource("1_m270v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

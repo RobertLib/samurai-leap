@@ -15,13 +15,16 @@ var immortal_blink_time := 0.1
 var blink_timer: Timer
 var immortal_timer: Timer
 var touched_ground := false
+var is_on_ground := false
 var is_attacking := false
-var crystals := 0
+var green_crystals := 0
+var red_crystals := 0
 
 @onready var animation_tree := $AnimationTree as AnimationTree
 @onready var navbar := get_node("/root/Level/Navbar") as Navbar
 @onready var player_container := $Container as Node2D
 @onready var attack_area := $Container/AttackArea as Area2D
+@onready var face_injury := $Container/Polygons/Head/FaceInjury as Sprite2D
 
 
 func _ready():
@@ -67,6 +70,7 @@ func _physics_process(delta: float):
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		touched_ground = false
+		is_on_ground = false
 		velocity.y = JUMP_VELOCITY
 		SoundManager.play_sound("hero_jump")
 
@@ -90,48 +94,56 @@ func _physics_process(delta: float):
 		var collision := get_slide_collision(i)
 
 		if collision:
+			if collision.get_collider().is_in_group("Terrain"):
+				is_on_ground = true
 			if collision.get_collider().is_in_group("Enemies"):
 				_on_collision_with_enemy(collision.get_collider())
-			if collision.get_collider().is_in_group("Crystals"):
-				_on_collision_with_crystal(collision.get_collider())
 
 
 func _start_attack():
 	is_attacking = true
-	await get_tree().create_timer(0.5).timeout
 	attack_area.set_monitoring(true)  # Enable attack area monitoring
-	await get_tree().create_timer(0.3).timeout
-	attack_area.set_monitoring(false)  # Disable attack area monitoring
-	await get_tree().create_timer(0.1).timeout
+	SoundManager.play_sound("hero_sword_slash_miss")
+	if get_tree():
+		await get_tree().create_timer(0.4).timeout
 	is_attacking = false
+	attack_area.set_monitoring(false)  # Disable attack area monitoring
 
 
-func _on_attack_area_body_entered(body: CharacterBody2D):
+func _on_attack_area_body_entered(body: Node2D):
 	if body.is_in_group("Enemies"):
 		body.take_damage(1)
+		SoundManager.play_sound("hero_sword_slash_hit")
 
 
 func _on_collision_with_enemy(enemy: CharacterBody2D):
 	if not is_immortal:
 		if enemy is Blob:
-			if enemy.state == enemy.BlobState.EVIL:
-				_bounce_off_the_enemy(enemy)
+			if enemy.is_in_group("Good"):
+				if not is_on_ground:
+					_bounce_off_the_good_blob(enemy)
+
+			if enemy.is_in_group("Evil"):
+				_bounce_off_the_evil_blob(enemy)
 				_subtract_life()
 				_start_immortality()
+
+				(enemy as Blob).eating()
 
 				SoundManager.play_sound("hero_got_hit")
 
 
-func _on_collision_with_crystal(crystal: RigidBody2D):
-	crystal.queue_free()
-	crystals += 1
+func _bounce_off_the_good_blob(blob: Blob):
+	var direction := (position - (blob.position - blob.velocity)).normalized()
+	velocity = direction * SPEED * 1.5
 
-	navbar.update_crystals(crystals)
+	SoundManager.play_sound("hero_bounced_off_enemy")
 
 
-func _bounce_off_the_enemy(enemy: CharacterBody2D):
-	var direction := (position - (enemy.position - enemy.velocity)).normalized()
-	velocity = direction * SPEED
+func _bounce_off_the_evil_blob(blob: Blob):
+	var direction := (position - (blob.position - blob.velocity)).normalized()
+	velocity.x = direction.x * SPEED * 5
+	velocity.y = JUMP_VELOCITY / 2
 
 	SoundManager.play_sound("hero_bounced_off_enemy")
 
@@ -146,20 +158,25 @@ func _subtract_life():
 
 
 func _update_animation_parameters():
-	animation_tree.set("parameters/conditions/idle", false)
-	animation_tree.set("parameters/conditions/is_moving", false)
-	animation_tree.set("parameters/conditions/is_attack", false)
-
 	if is_attacking:
+		animation_tree.set("parameters/conditions/idle", false)
+		animation_tree.set("parameters/conditions/is_moving", false)
 		animation_tree.set("parameters/conditions/is_attack", true)
 	else:
 		if velocity == Vector2.ZERO:
 			animation_tree.set("parameters/conditions/idle", true)
+			animation_tree.set("parameters/conditions/is_moving", false)
+			animation_tree.set("parameters/conditions/is_attack", false)
 		else:
+			animation_tree.set("parameters/conditions/idle", false)
 			animation_tree.set("parameters/conditions/is_moving", true)
+			animation_tree.set("parameters/conditions/is_attack", false)
 
 	if last_direction:
-		animation_tree.set("parameters/Idle/blend_position", Vector2(last_direction, 0))
+		animation_tree.set(
+			"parameters/Idle/blend_position",
+			Vector2(last_direction, -1 if Input.is_action_pressed("ui_down") else 0)
+		)
 		animation_tree.set(
 			"parameters/Move/blend_position", Vector2(last_direction, 0 if is_on_floor() else 1)
 		)
@@ -172,6 +189,10 @@ func _update_animation_parameters():
 func _start_immortality():
 	is_immortal = true
 	set_collision_mask_value(3, false)
+	face_injury.show()
+	if get_tree():
+		await get_tree().create_timer(0.5).timeout
+	face_injury.hide()
 	immortal_timer.start()
 	blink_timer.start()
 
@@ -188,3 +209,12 @@ func _toggle_blink():
 		player_container.modulate.a = 0.6
 	else:
 		player_container.modulate.a = 1.0
+
+
+func pick_up_crystal(type: String):
+	if type == "green":
+		green_crystals += 1
+	elif type == "red":
+		red_crystals += 1
+
+	navbar.update_crystals(green_crystals, red_crystals)

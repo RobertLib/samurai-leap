@@ -2,12 +2,8 @@ class_name Blob
 
 extends CharacterBody2D
 
-enum BlobState { GOOD, EVIL }
-
-const CrystalGreen := preload("res://items/crystal_green/crystal_green.tscn")
-const CrystalRed := preload("res://items/crystal_red/crystal_red.tscn")
-
-@export var state: BlobState = BlobState.GOOD
+const CrystalGreen := preload("res://items/crystal/crystal_green/crystal_green.tscn")
+const CrystalRed := preload("res://items/crystal/crystal_red/crystal_red.tscn")
 
 var direction := -1
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -19,7 +15,9 @@ var attack_delay := 0.5
 var attack_timer := 0.0
 var lives := 1
 
-@onready var sprite := $Sprite2D as Sprite2D
+@onready var container := $Container as Node2D
+@onready var mouth := $Container/Mouth as Node2D
+@onready var eyes := $Container/Eyes as Node2D
 @onready var raycast_left := $RayCast_Left as RayCast2D
 @onready var raycast_right := $RayCast_Right as RayCast2D
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
@@ -27,13 +25,15 @@ var lives := 1
 
 
 func _ready():
-	_update_state()
-
 	var animation_start_delay = randf_range(0, animation_player.get_animation("walk").length)
 
-	await get_tree().create_timer(animation_start_delay).timeout
+	if get_tree():
+		await get_tree().create_timer(animation_start_delay).timeout
 
 	animation_tree.active = true
+
+	if randf() > 0.5:
+		change_direction()
 
 
 func _physics_process(delta: float):
@@ -70,9 +70,14 @@ func _physics_process(delta: float):
 				_on_collision_with_enemy(collision.get_collider())
 			if collision.get_collider().is_in_group("Player"):
 				_on_collision_with_player(collision.get_collider())
+			if collision.get_collider().is_in_group("Crystal"):
+				_on_collision_with_crystal(collision.get_collider())
 
 	direction_change_timer = max(0, direction_change_timer - delta)
 	attack_timer = max(0, attack_timer - delta)
+
+	if attack_timer == 0:
+		mouth.hide()
 
 	move_and_slide()
 
@@ -82,25 +87,43 @@ func change_direction():
 		direction *= -1
 		direction_change_timer = direction_change_delay
 
+		container.scale.x = -direction
+
 
 func _on_collision_with_enemy(enemy: CharacterBody2D):
 	if enemy.is_in_group("Blob"):
 		change_direction()
 		enemy.change_direction()
 
-		if state == BlobState.EVIL and enemy.state == BlobState.GOOD:
+		if is_in_group("Evil") and enemy.is_in_group("Good"):
 			_attack(enemy)
+			enemy.bounce_off_the_evil_blob(self)
 
 
-func _on_collision_with_player(_player: CharacterBody2D):
-	if state == BlobState.GOOD:
+func bounce_off_the_evil_blob(blob: Blob):
+	var dir := (position - (blob.position - blob.velocity)).normalized()
+	velocity.x = dir.x * speed * 5
+	velocity.y = -100
+
+
+func _on_collision_with_player(_player: Player):
+	if is_in_group("Good"):
 		change_direction()
+
+
+func _on_collision_with_crystal(crystal: Crystal):
+	if is_in_group("Evil") and crystal.is_in_group("Red"):
+		crystal.queue_free()
+		speed += 23
+		eyes.show()
+		SoundManager.play_sound("enemy_eating")
 
 
 func _attack(enemy: CharacterBody2D):
 	if attack_timer == 0:
 		# 50% chance to hit the enemy
 		if randf() > 0.5:
+			mouth.show()
 			enemy.take_damage(1)
 			_add_life()
 
@@ -122,11 +145,18 @@ func _animate_scale(to_scale: Vector2):
 	tween.tween_property(self, "scale", to_scale, 0.1)
 
 
+func eating():
+	mouth.show()
+	attack_timer = attack_delay
+
+
 func take_damage(damage: int):
 	lives -= damage
+	_animate_scale(scale * 0.85 / damage)
 
 	animation_tree.set("parameters/conditions/damage", true)
-	await get_tree().create_timer(0.2).timeout
+	if get_tree():
+		await get_tree().create_timer(0.2).timeout
 
 	if lives > 0:
 		animation_tree.set("parameters/conditions/damage", false)
@@ -140,9 +170,7 @@ func _spawn_crystals():
 	var num_crystals = randi_range(1, 3)
 
 	for i in range(num_crystals):
-		var crystal = (
-			(CrystalRed if state == BlobState.GOOD else CrystalGreen).instantiate() as RigidBody2D
-		)
+		var crystal = (CrystalRed if is_in_group("Good") else CrystalGreen).instantiate() as Crystal
 
 		crystal.global_position = global_position
 
@@ -151,24 +179,3 @@ func _spawn_crystals():
 		crystal.linear_velocity = Vector2(cos(angle), sin(angle)) * randf_range(200, 400)
 
 		get_parent().call_deferred("add_child", crystal)
-
-
-func _update_collision_mask():
-	if state == BlobState.GOOD:
-		collision_mask |= 1 << 0  # Player
-	else:
-		collision_mask &= ~(1 << 0)
-
-
-func _update_state():
-	if state == BlobState.EVIL:
-		sprite.texture = preload("res://enemies/blob/blob_evil.png")
-	else:
-		sprite.texture = preload("res://enemies/blob/blob_good.png")
-
-	_update_collision_mask()
-
-
-func _set_state(new_state: BlobState):
-	state = new_state
-	_update_state()

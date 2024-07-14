@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dya7fy2r6ii8s"
-path="res://.godot/imported/blob_good.png-3906594951e00a05bd04210941cabc8e.ctex"
+uid="uid://l1tmdgabcnce"
+path="res://.godot/imported/crystal_green.png-e3acef440df7b4eceb99ca8745fc6666.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/blob/blob_good.png"
-dest_files=["res://.godot/imported/blob_good.png-3906594951e00a05bd04210941cabc8e.ctex"]
+source_file="res://items/crystal/crystal_green/crystal_green.png"
+dest_files=["res://.godot/imported/crystal_green.png-e3acef440df7b4eceb99ca8745fc6666.ctex"]
 
 [params]
 

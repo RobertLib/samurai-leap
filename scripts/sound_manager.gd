@@ -4,12 +4,14 @@ var sounds := {}
 
 
 func _ready():
+	sounds["enemy_eating"] = preload("res://audio/enemy_eating.ogg")
 	sounds["hero_boundced_off_enemy"] = preload("res://audio/hero_boundced_off_enemy.ogg")
 	sounds["hero_got_hit"] = preload("res://audio/hero_got_hit.ogg")
 	sounds["hero_health_picked_up"] = preload("res://audio/hero_health_picked_up.ogg")
 	sounds["hero_jump"] = preload("res://audio/hero_jump.ogg")
 	sounds["hero_jump_land"] = preload("res://audio/hero_jump_land.ogg")
-	sounds["enemy_eating"] = preload("res://audio/enemy_eating.ogg")
+	sounds["hero_sword_slash_hit"] = preload("res://audio/hero_sword_slash_hit.ogg")
+	sounds["hero_sword_slash_miss"] = preload("res://audio/hero_sword_slash_miss.ogg")
 
 
 func play_sound(sound_name: String):

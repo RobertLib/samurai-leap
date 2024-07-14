@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvueq8wcb6yit"]
+[gd_scene load_steps=12 format=3 uid="uid://cvueq8wcb6yit"]
 
 [ext_resource type="Texture2D" uid="uid://dqqnb74qa60hv" path="res://levels/level1/tiles.png" id="1_icdpp"]
 [ext_resource type="Texture2D" uid="uid://vw00yotwrr5w" path="res://levels/level1/background.png" id="1_jv3xj"]
-[ext_resource type="PackedScene" uid="uid://dctwetuw54i4s" path="res://enemies/blob/blob.tscn" id="2_bdnrd"]
+[ext_resource type="PackedScene" uid="uid://dctwetuw54i4s" path="res://enemies/blob/blob_good/blob_good.tscn" id="2_bdnrd"]
 [ext_resource type="PackedScene" uid="uid://c4jkl1ksuippr" path="res://player/player.tscn" id="2_qy5kv"]
+[ext_resource type="PackedScene" uid="uid://b0iuhlw5qqp74" path="res://enemies/blob/blob_evil/blob_evil.tscn" id="3_3gl0n"]
 [ext_resource type="PackedScene" uid="uid://bs8pc5d6mus8s" path="res://items/coin/coin.tscn" id="4_f8o4n"]
 [ext_resource type="PackedScene" uid="uid://macijckvfma0" path="res://ui/navbar/navbar.tscn" id="6_6yepx"]
 [ext_resource type="PackedScene" uid="uid://wrsj1744g817" path="res://ui/control/control.tscn" id="6_bkw4y"]
@@ -497,11 +498,13 @@ terrain_set_0/terrain_0/color = Color(0, 1, 0.833333, 1)
 sources/1 = SubResource("TileSetAtlasSource_eg17b")
 
 [node name="Level" type="Node2D"]
+position = Vector2(-1, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_qy5kv")]
 position = Vector2(200, 400)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.7, 0.7)
 limit_left = 0
 limit_top = 0
 limit_right = 2912
@@ -511,17 +514,25 @@ position_smoothing_enabled = true
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Blob" parent="Enemies" instance=ExtResource("2_bdnrd")]
-position = Vector2(615, 600)
+position = Vector2(730, 600)
+
+[node name="Blob5" parent="Enemies" instance=ExtResource("2_bdnrd")]
+position = Vector2(900, 600)
 
 [node name="Blob2" parent="Enemies" instance=ExtResource("2_bdnrd")]
-position = Vector2(975, 600)
-state = 1
+position = Vector2(1060, 600)
+
+[node name="Blob6" parent="Enemies" instance=ExtResource("2_bdnrd")]
+position = Vector2(1205, 600)
 
 [node name="Blob3" parent="Enemies" instance=ExtResource("2_bdnrd")]
-position = Vector2(1280, 600)
+position = Vector2(1345, 600)
 
-[node name="Blob4" parent="Enemies" instance=ExtResource("2_bdnrd")]
-position = Vector2(1540, 600)
+[node name="Blob7" parent="Enemies" instance=ExtResource("2_bdnrd")]
+position = Vector2(1485, 600)
+
+[node name="Blob4" parent="Enemies" instance=ExtResource("3_3gl0n")]
+position = Vector2(1630, 600)
 
 [node name="TileMap" type="TileMap" parent="." groups=["Terrain"]]
 scale = Vector2(0.33, 0.33)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dctwetuw54i4s"]
+[gd_scene load_steps=15 format=3 uid="uid://b0iuhlw5qqp74"]
 
-[ext_resource type="Script" path="res://enemies/blob/blob.gd" id="1_axm3p"]
-[ext_resource type="Texture2D" uid="uid://dya7fy2r6ii8s" path="res://enemies/blob/blob_good.png" id="1_i2jmm"]
+[ext_resource type="Script" path="res://enemies/blob/blob.gd" id="1_tcoa7"]
+[ext_resource type="Texture2D" uid="uid://c3v3vtlljm51p" path="res://enemies/blob/blob_evil/blob_evil.png" id="2_m6ppt"]
+[ext_resource type="Texture2D" uid="uid://dx6umjhr06e14" path="res://enemies/blob/blob_evil/blob_evil_mouth.png" id="3_wv6ff"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jo0a4"]
 radius = 30.0
@@ -12,7 +13,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/path = NodePath("Container/Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -24,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/path = NodePath("Container/Sprite2D:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -36,7 +37,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/path = NodePath("Container/Sprite2D:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -52,7 +53,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/path = NodePath("Container/Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -68,7 +69,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/path = NodePath("Container/Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -80,7 +81,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/path = NodePath("Container/Sprite2D:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -124,17 +125,37 @@ states/walk/position = Vector2(376.737, 100.236)
 transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_1f3ym"), "walk", "damage", SubResource("AnimationNodeStateMachineTransition_j7xtb"), "damage", "walk", SubResource("AnimationNodeStateMachineTransition_psyl8")]
 graph_offset = Vector2(26.652, -39.984)
 
-[node name="Blob" type="CharacterBody2D" groups=["Blob", "Enemies"]]
+[node name="Blob" type="CharacterBody2D" groups=["Blob", "Enemies", "Evil"]]
 z_index = 1
 position = Vector2(0, -1)
 collision_layer = 4
-collision_mask = 6
-script = ExtResource("1_axm3p")
+collision_mask = 14
+script = ExtResource("1_tcoa7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Container" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Container"]
 position = Vector2(0, -9)
 scale = Vector2(0.15, 0.15)
-texture = ExtResource("1_i2jmm")
+texture = ExtResource("2_m6ppt")
+
+[node name="Mouth" type="Sprite2D" parent="Container"]
+visible = false
+position = Vector2(-9.75, 21.75)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("3_wv6ff")
+
+[node name="Eyes" type="Node2D" parent="Container"]
+visible = false
+modulate = Color(1, 1, 1, 0.294118)
+
+[node name="LeftEye" type="Polygon2D" parent="Container/Eyes"]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-26.0918, 5.68611, -25.8891, 3.29846, -25.5512, 1.40636, -24.7403, -0.508265, -23.5465, -1.79219, -21.9247, -2.49046, -20.2354, -2.53551, -18.6361, -2.01744, -17.5774, -0.98129, -16.9242, 0.370209, -16.4962, 2.26231, -16.271, 4.85268, -16.3385, 7.71335, -16.6539, 10.3263, -17.3522, 12.1958, -18.3207, 13.2996, -19.9876, 14.3132, -21.9247, 14.5384, -23.7267, 13.75, -25.0557, 12.2634, -25.8891, 10.3037, -26.1594, 8.07375)
+
+[node name="RightEye" type="Polygon2D" parent="Container/Eyes"]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(1.92926, -2.58056, 3.75379, -2.40036, 5.21791, -1.76966, 6.38921, -0.846139, 7.17759, 0.617984, 7.67314, 2.44251, 7.89838, 5.12298, 7.92091, 7.87103, 7.71819, 10.2362, 7.15506, 12.331, 6.38921, 13.6374, 5.30801, 14.7411, 3.79884, 15.3944, 1.97431, 15.7998, 0.352516, 15.552, -1.31433, 14.7862, -2.53068, 13.3897, -3.31906, 11.3849, -3.79208, 8.43415, -3.76956, 5.32571, -3.54431, 2.80291, -2.80098, 0.437785, -1.49453, -1.29664, 0.0822163, -2.28774)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 2)
