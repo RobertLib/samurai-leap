@@ -25,7 +25,7 @@ var lives := 1
 
 
 func _ready():
-	var animation_start_delay = randf_range(0, animation_player.get_animation("walk").length)
+	var animation_start_delay := randf_range(0, animation_player.get_animation("walk").length)
 
 	if get_tree():
 		await get_tree().create_timer(animation_start_delay).timeout
@@ -47,8 +47,8 @@ func _physics_process(delta: float):
 		velocity.x = move_toward(velocity.x, 0, speed)
 
 	# Check if there's ground on the sides
-	var is_ground_left = raycast_left.is_colliding()
-	var is_ground_right = raycast_right.is_colliding()
+	var is_ground_left := raycast_left.is_colliding()
+	var is_ground_right := raycast_right.is_colliding()
 
 	# Change direction if there's a risk of falling.
 	if (direction == 1 and not is_ground_right) or (direction == -1 and not is_ground_left):
@@ -138,11 +138,17 @@ func _add_life():
 
 
 func _animate_scale(to_scale: Vector2):
-	var tween = create_tween()
+	var tween := create_tween()
 	tween.tween_property(self, "scale", to_scale * 1.2, 0.1)
 	tween.tween_property(self, "scale", to_scale * 0.9, 0.1)
 	tween.tween_property(self, "scale", to_scale * 1.05, 0.1)
 	tween.tween_property(self, "scale", to_scale, 0.1)
+
+
+func animate_suspension():
+	var tween := create_tween()
+	tween.tween_property(self, "position", position + Vector2(0, -5), 0.1)
+	tween.tween_property(self, "position", position + Vector2(0, 5), 0.1)
 
 
 func eating():
@@ -167,14 +173,16 @@ func take_damage(damage: int):
 
 
 func _spawn_crystals():
-	var num_crystals = randi_range(1, 3)
+	var num_crystals := randi_range(1, 3)
 
 	for i in range(num_crystals):
-		var crystal = (CrystalRed if is_in_group("Good") else CrystalGreen).instantiate() as Crystal
+		var crystal := (
+			(CrystalRed if is_in_group("Good") else CrystalGreen).instantiate() as Crystal
+		)
 
 		crystal.global_position = global_position
 
-		var angle = randf_range(-PI, 0)
+		var angle := randf_range(-PI, 0)
 
 		crystal.linear_velocity = Vector2(cos(angle), sin(angle)) * randf_range(200, 400)
 

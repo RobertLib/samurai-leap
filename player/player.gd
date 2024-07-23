@@ -17,6 +17,7 @@ var immortal_timer: Timer
 var touched_ground := false
 var is_on_ground := false
 var is_attacking := false
+var is_attacking_from_below := false
 var green_crystals := 0
 var red_crystals := 0
 
@@ -24,6 +25,8 @@ var red_crystals := 0
 @onready var navbar := get_node("/root/Level/Navbar") as Navbar
 @onready var player_container := $Container as Node2D
 @onready var attack_area := $Container/AttackArea as Area2D
+@onready var attack_area_position := ($Container/AttackArea as Area2D).position
+@onready var attack_area_bottom_position := Vector2(0, 200)
 @onready var face_injury := $Container/Polygons/Head/FaceInjury as Sprite2D
 
 
@@ -64,6 +67,7 @@ func _physics_process(delta: float):
 		if not touched_ground:
 			touched_ground = true
 			SoundManager.play_sound("hero_jump_land")
+			_end_bottom_attack()
 	else:
 		velocity.y += gravity * delta
 
@@ -77,6 +81,10 @@ func _physics_process(delta: float):
 	# Handle attack
 	if Input.is_action_just_pressed("attack") and not is_attacking:
 		_start_attack()
+
+	# Handle bottom attack
+	if Input.is_action_just_pressed("ui_down") and not is_on_floor() and not is_attacking:
+		_start_bottom_attack()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -110,10 +118,29 @@ func _start_attack():
 	attack_area.set_monitoring(false)  # Disable attack area monitoring
 
 
+func _start_bottom_attack():
+	is_attacking = true
+	is_attacking_from_below = true
+	attack_area.set_monitoring(true)  # Enable attack area monitoring
+	attack_area.position = attack_area_bottom_position
+
+
+func _end_bottom_attack():
+	is_attacking = false
+	attack_area.set_monitoring(false)  # Disable attack area monitoring
+	attack_area.position = attack_area_position
+	if get_tree():
+		await get_tree().create_timer(0.2).timeout
+	is_attacking_from_below = false
+
+
 func _on_attack_area_body_entered(body: Node2D):
 	if body.is_in_group("Enemies"):
 		body.take_damage(1)
 		SoundManager.play_sound("hero_sword_slash_hit")
+
+		if body.is_in_group("Good") and is_attacking_from_below:
+			_bounce_off_the_good_blob(body)
 
 
 func _on_collision_with_enemy(enemy: CharacterBody2D):
@@ -137,7 +164,10 @@ func _bounce_off_the_good_blob(blob: Blob):
 	var direction := (position - (blob.position - blob.velocity)).normalized()
 	velocity = direction * SPEED * 1.5
 
-	SoundManager.play_sound("hero_bounced_off_enemy")
+	if velocity.y < JUMP_VELOCITY / 2:
+		blob.animate_suspension()
+
+		SoundManager.play_sound("hero_bounced_off_enemy")
 
 
 func _bounce_off_the_evil_blob(blob: Blob):
@@ -182,7 +212,10 @@ func _update_animation_parameters():
 		)
 		animation_tree.set(
 			"parameters/Attack/blend_position",
-			Vector2(last_direction, 0 if velocity == Vector2.ZERO else 1)
+			Vector2(
+				last_direction,
+				-1 if is_attacking_from_below else 0 if velocity == Vector2.ZERO else 1
+			)
 		)
 
 

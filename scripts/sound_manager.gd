@@ -5,7 +5,7 @@ var sounds := {}
 
 func _ready():
 	sounds["enemy_eating"] = preload("res://audio/enemy_eating.ogg")
-	sounds["hero_boundced_off_enemy"] = preload("res://audio/hero_boundced_off_enemy.ogg")
+	sounds["hero_bounced_off_enemy"] = preload("res://audio/hero_bounced_off_enemy.ogg")
 	sounds["hero_got_hit"] = preload("res://audio/hero_got_hit.ogg")
 	sounds["hero_health_picked_up"] = preload("res://audio/hero_health_picked_up.ogg")
 	sounds["hero_jump"] = preload("res://audio/hero_jump.ogg")
