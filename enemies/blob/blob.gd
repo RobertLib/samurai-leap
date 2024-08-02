@@ -2,8 +2,8 @@ class_name Blob
 
 extends CharacterBody2D
 
-const CrystalGreen := preload("res://items/crystal/crystal_green/crystal_green.tscn")
-const CrystalRed := preload("res://items/crystal/crystal_red/crystal_red.tscn")
+const CrystalGreenScene := preload("res://items/crystal/crystal_green/crystal_green.tscn")
+const CrystalRedScene := preload("res://items/crystal/crystal_red/crystal_red.tscn")
 
 var direction := -1
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -177,7 +177,7 @@ func _spawn_crystals():
 
 	for i in range(num_crystals):
 		var crystal := (
-			(CrystalRed if is_in_group("Good") else CrystalGreen).instantiate() as Crystal
+			(CrystalRedScene if is_in_group("Good") else CrystalGreenScene).instantiate() as Crystal
 		)
 
 		crystal.global_position = global_position

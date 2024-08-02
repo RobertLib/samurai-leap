@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://4djligpdxe7a"]
+
+[ext_resource type="Texture2D" uid="uid://2ry74evy04n8" path="res://environment/bamboo/bamboo.png" id="1_jy87l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_addk1"]
+size = Vector2(130, 325)
+
+[node name="Bamboo" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_jy87l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_addk1")

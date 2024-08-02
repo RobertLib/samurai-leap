@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c4jkl1ksuippr"]
+[gd_scene load_steps=52 format=3 uid="uid://c4jkl1ksuippr"]
 
 [ext_resource type="Texture2D" uid="uid://bb1dlv3uyhpsu" path="res://player/player.png" id="1_sv3b6"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_ukkd8"]
@@ -1153,18 +1153,6 @@ tracks/34/keys = {
 "update": 0,
 "values": [Vector2(-1, 1)]
 }
-tracks/35/type = "value"
-tracks/35/imported = false
-tracks/35/enabled = true
-tracks/35/path = NodePath("Container/SwordSlash:visible")
-tracks/35/interp = 1
-tracks/35/loop_wrap = true
-tracks/35/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [false, false, false, false, false, false, false, false, false, false, false]
-}
 
 [sub_resource type="Animation" id="Animation_m8mbk"]
 resource_name = "bottom_attack_right"
@@ -1588,18 +1576,6 @@ tracks/34/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
-tracks/35/type = "value"
-tracks/35/imported = false
-tracks/35/enabled = true
-tracks/35/path = NodePath("Container/SwordSlash:visible")
-tracks/35/interp = 1
-tracks/35/loop_wrap = true
-tracks/35/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [false, false, false, false, false, false, false, false, false, false, false]
-}
 
 [sub_resource type="Animation" id="Animation_wduj6"]
 resource_name = "idle_left"
@@ -1619,58 +1595,46 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Container/SwordSlash:visible")
+tracks/1/path = NodePath("Container/Skeleton2D/Hip/Chest:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [false, false, false, false, false, false, false, false, false, false, false]
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2.08165e-12, -35), Vector2(2.08165e-12, -38.3333), Vector2(2.08165e-12, -35)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Container/Skeleton2D/Hip/Chest:position")
+tracks/2/path = NodePath("Container/Skeleton2D/Hip/Chest/Head:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(2.08165e-12, -35), Vector2(2.08165e-12, -38.3333), Vector2(2.08165e-12, -35)]
+"values": [Vector2(2.08165e-12, -75), Vector2(2.08165e-12, -78.3333), Vector2(2.08165e-12, -75)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Container/Skeleton2D/Hip/Chest/Head:position")
+tracks/3/path = NodePath("Container/Skeleton2D/Hip/Chest/ShoulderLeft:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(2.08165e-12, -75), Vector2(2.08165e-12, -78.3333), Vector2(2.08165e-12, -75)]
+"values": [0.0, -0.0762891, 0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Container/Skeleton2D/Hip/Chest/ShoulderLeft:rotation")
+tracks/4/path = NodePath("Container/Skeleton2D/Hip/Chest/ShoulderRight:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, -0.0762891, 0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Container/Skeleton2D/Hip/Chest/ShoulderRight:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
@@ -1695,58 +1659,46 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Container/SwordSlash:visible")
+tracks/1/path = NodePath("Container/Skeleton2D/Hip/Chest:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [false, false, false, false, false, false, false, false, false, false, false]
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2.08165e-12, -35), Vector2(2.08165e-12, -38.3333), Vector2(2.08165e-12, -35)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Container/Skeleton2D/Hip/Chest:position")
+tracks/2/path = NodePath("Container/Skeleton2D/Hip/Chest/Head:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(2.08165e-12, -35), Vector2(2.08165e-12, -38.3333), Vector2(2.08165e-12, -35)]
+"values": [Vector2(2.08165e-12, -75), Vector2(2.08165e-12, -78.3333), Vector2(2.08165e-12, -75)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Container/Skeleton2D/Hip/Chest/Head:position")
+tracks/3/path = NodePath("Container/Skeleton2D/Hip/Chest/ShoulderLeft:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(2.08165e-12, -75), Vector2(2.08165e-12, -78.3333), Vector2(2.08165e-12, -75)]
+"values": [0.0, -0.0762891, 0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Container/Skeleton2D/Hip/Chest/ShoulderLeft:rotation")
+tracks/4/path = NodePath("Container/Skeleton2D/Hip/Chest/ShoulderRight:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, -0.0762891, 0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Container/Skeleton2D/Hip/Chest/ShoulderRight:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
@@ -2127,18 +2079,6 @@ tracks/30/keys = {
 "update": 0,
 "values": [Vector2(-1, 1)]
 }
-tracks/31/type = "value"
-tracks/31/imported = false
-tracks/31/enabled = true
-tracks/31/path = NodePath("Container/SwordSlash:visible")
-tracks/31/interp = 1
-tracks/31/loop_wrap = true
-tracks/31/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [false, false, false, false, false, false, false, false, false, false, false]
-}
 
 [sub_resource type="Animation" id="Animation_g4f6t"]
 resource_name = "jump_right"
@@ -2513,18 +2453,6 @@ tracks/30/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
-}
-tracks/31/type = "value"
-tracks/31/imported = false
-tracks/31/enabled = true
-tracks/31/path = NodePath("Container/SwordSlash:visible")
-tracks/31/interp = 1
-tracks/31/loop_wrap = true
-tracks/31/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [false, false, false, false, false, false, false, false, false, false, false]
 }
 
 [sub_resource type="Animation" id="Animation_e75ig"]
@@ -2950,18 +2878,6 @@ tracks/34/keys = {
 "update": 0,
 "values": [Vector2(-1, 1)]
 }
-tracks/35/type = "value"
-tracks/35/imported = false
-tracks/35/enabled = true
-tracks/35/path = NodePath("Container/SwordSlash:visible")
-tracks/35/interp = 1
-tracks/35/loop_wrap = true
-tracks/35/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, false, false]
-}
 
 [sub_resource type="Animation" id="Animation_gea8a"]
 resource_name = "kneeling_right"
@@ -3386,17 +3302,61 @@ tracks/34/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
-tracks/35/type = "value"
-tracks/35/imported = false
-tracks/35/enabled = true
-tracks/35/path = NodePath("Container/SwordSlash:visible")
-tracks/35/interp = 1
-tracks/35/loop_wrap = true
-tracks/35/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
+
+[sub_resource type="Animation" id="Animation_s5cqf"]
+resource_name = "throw_left"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Container/Skeleton2D/Hip/Chest/ShoulderRight:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, false, false]
+"update": 0,
+"values": [0.0, -1.58254, 3.48787e-16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Container:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m3t78"]
+resource_name = "throw_right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Container/Skeleton2D/Hip/Chest/ShoulderRight:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -1.58254, 3.48787e-16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Container:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_meofh"]
@@ -3823,18 +3783,6 @@ tracks/34/keys = {
 "update": 0,
 "values": [0.0, -0.0973504, 0.111723]
 }
-tracks/35/type = "value"
-tracks/35/imported = false
-tracks/35/enabled = true
-tracks/35/path = NodePath("Container/SwordSlash:visible")
-tracks/35/interp = 1
-tracks/35/loop_wrap = true
-tracks/35/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [false, false, false, false, false, false, false, false, false]
-}
 
 [sub_resource type="Animation" id="Animation_lfqth"]
 resource_name = "walk_right"
@@ -4259,18 +4207,6 @@ tracks/34/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, -0.0973504, 0.111723]
-}
-tracks/35/type = "value"
-tracks/35/imported = false
-tracks/35/enabled = true
-tracks/35/path = NodePath("Container/SwordSlash:visible")
-tracks/35/interp = 1
-tracks/35/loop_wrap = true
-tracks/35/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [false, false, false, false, false, false, false, false, false]
 }
 
 [sub_resource type="Animation" id="Animation_ftj4i"]
@@ -5184,6 +5120,8 @@ _data = {
 "jump_right": SubResource("Animation_g4f6t"),
 "kneeling_left": SubResource("Animation_e75ig"),
 "kneeling_right": SubResource("Animation_gea8a"),
+"throw_left": SubResource("Animation_s5cqf"),
+"throw_right": SubResource("Animation_m3t78"),
 "walk_left": SubResource("Animation_meofh"),
 "walk_right": SubResource("Animation_lfqth"),
 "walking_attack_left": SubResource("Animation_ftj4i"),
@@ -5208,6 +5146,12 @@ animation = &"bottom_attack_left"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uldh3"]
 animation = &"bottom_attack_right"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hwdj8"]
+animation = &"throw_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_65wpo"]
+animation = &"throw_right"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_dam2s"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_euf0n")
 blend_point_0/pos = Vector2(-1, 0)
@@ -5221,6 +5165,10 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_37505")
 blend_point_4/pos = Vector2(-1, -1)
 blend_point_5/node = SubResource("AnimationNodeAnimation_uldh3")
 blend_point_5/pos = Vector2(1, -1)
+blend_point_6/node = SubResource("AnimationNodeAnimation_hwdj8")
+blend_point_6/pos = Vector2(-1, -0.5)
+blend_point_7/node = SubResource("AnimationNodeAnimation_65wpo")
+blend_point_7/pos = Vector2(1, -0.5)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xpgie"]
@@ -5308,7 +5256,7 @@ states/Idle/position = Vector2(387.789, 98.2549)
 states/Move/node = SubResource("AnimationNodeBlendSpace2D_grl1m")
 states/Move/position = Vector2(584.632, 99.1646)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_i88xq"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_pl4a6"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_n0d21"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_ss67o"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_a5g5s"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_5874i"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_mdbi7")]
-graph_offset = Vector2(79.956, -45.378)
+graph_offset = Vector2(39.978, -59.658)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(0.3, 0.3)
@@ -5515,7 +5463,7 @@ shape = SubResource("CapsuleShape2D_c28yk")
 libraries = {
 "": SubResource("AnimationLibrary_kcaba")
 }
-blend_times = [&"RESET", &"RESET", 0.2, &"RESET", &"bottom_attack_right", 0.2, &"RESET", &"idle_left", 0.2, &"RESET", &"idle_right", 0.2, &"RESET", &"attack_left", 0.2, &"RESET", &"attack_right", 0.2, &"RESET", &"bottom_attack_left", 0.2, &"RESET", &"kneeling_left", 0.2, &"RESET", &"kneeling_right", 0.2, &"RESET", &"walk_left", 0.2, &"RESET", &"walk_right", 0.2, &"RESET", &"walking_attack_left", 0.2, &"RESET", &"walking_attack_right", 0.2, &"RESET", &"jump_left", 0.2, &"RESET", &"jump_right", 0.2, &"bottom_attack_right", &"RESET", 0.2, &"bottom_attack_right", &"bottom_attack_right", 0.2, &"bottom_attack_right", &"idle_left", 0.2, &"bottom_attack_right", &"idle_right", 0.2, &"bottom_attack_right", &"attack_left", 0.2, &"bottom_attack_right", &"attack_right", 0.2, &"bottom_attack_right", &"bottom_attack_left", 0.2, &"bottom_attack_right", &"kneeling_left", 0.2, &"bottom_attack_right", &"kneeling_right", 0.2, &"bottom_attack_right", &"walk_left", 0.2, &"bottom_attack_right", &"walk_right", 0.2, &"bottom_attack_right", &"walking_attack_left", 0.2, &"bottom_attack_right", &"walking_attack_right", 0.2, &"bottom_attack_right", &"jump_left", 0.2, &"bottom_attack_right", &"jump_right", 0.2, &"idle_left", &"RESET", 0.2, &"idle_left", &"bottom_attack_right", 0.2, &"idle_left", &"idle_left", 0.2, &"idle_left", &"idle_right", 0.2, &"idle_left", &"attack_left", 0.2, &"idle_left", &"attack_right", 0.2, &"idle_left", &"bottom_attack_left", 0.2, &"idle_left", &"kneeling_left", 0.2, &"idle_left", &"kneeling_right", 0.2, &"idle_left", &"walk_left", 0.2, &"idle_left", &"walk_right", 0.2, &"idle_left", &"walking_attack_left", 0.2, &"idle_left", &"walking_attack_right", 0.2, &"idle_left", &"jump_left", 0.2, &"idle_left", &"jump_right", 0.2, &"idle_right", &"RESET", 0.2, &"idle_right", &"bottom_attack_right", 0.2, &"idle_right", &"idle_left", 0.2, &"idle_right", &"idle_right", 0.2, &"idle_right", &"attack_left", 0.2, &"idle_right", &"attack_right", 0.2, &"idle_right", &"bottom_attack_left", 0.2, &"idle_right", &"kneeling_left", 0.2, &"idle_right", &"kneeling_right", 0.2, &"idle_right", &"walk_left", 0.2, &"idle_right", &"walk_right", 0.2, &"idle_right", &"walking_attack_left", 0.2, &"idle_right", &"walking_attack_right", 0.2, &"idle_right", &"jump_left", 0.2, &"idle_right", &"jump_right", 0.2, &"attack_left", &"RESET", 0.2, &"attack_left", &"bottom_attack_right", 0.2, &"attack_left", &"idle_left", 0.2, &"attack_left", &"idle_right", 0.2, &"attack_left", &"attack_left", 0.2, &"attack_left", &"attack_right", 0.2, &"attack_left", &"bottom_attack_left", 0.2, &"attack_left", &"kneeling_left", 0.2, &"attack_left", &"kneeling_right", 0.2, &"attack_left", &"walk_left", 0.2, &"attack_left", &"walk_right", 0.2, &"attack_left", &"walking_attack_left", 0.2, &"attack_left", &"walking_attack_right", 0.2, &"attack_left", &"jump_left", 0.2, &"attack_left", &"jump_right", 0.2, &"attack_right", &"RESET", 0.2, &"attack_right", &"bottom_attack_right", 0.2, &"attack_right", &"idle_left", 0.2, &"attack_right", &"idle_right", 0.2, &"attack_right", &"attack_left", 0.2, &"attack_right", &"attack_right", 0.2, &"attack_right", &"bottom_attack_left", 0.2, &"attack_right", &"kneeling_left", 0.2, &"attack_right", &"kneeling_right", 0.2, &"attack_right", &"walk_left", 0.2, &"attack_right", &"walk_right", 0.2, &"attack_right", &"walking_attack_left", 0.2, &"attack_right", &"walking_attack_right", 0.2, &"attack_right", &"jump_left", 0.2, &"attack_right", &"jump_right", 0.2, &"bottom_attack_left", &"RESET", 0.2, &"bottom_attack_left", &"bottom_attack_right", 0.2, &"bottom_attack_left", &"idle_left", 0.2, &"bottom_attack_left", &"idle_right", 0.2, &"bottom_attack_left", &"attack_left", 0.2, &"bottom_attack_left", &"attack_right", 0.2, &"bottom_attack_left", &"bottom_attack_left", 0.2, &"bottom_attack_left", &"kneeling_left", 0.2, &"bottom_attack_left", &"kneeling_right", 0.2, &"bottom_attack_left", &"walk_left", 0.2, &"bottom_attack_left", &"walk_right", 0.2, &"bottom_attack_left", &"walking_attack_left", 0.2, &"bottom_attack_left", &"walking_attack_right", 0.2, &"bottom_attack_left", &"jump_left", 0.2, &"bottom_attack_left", &"jump_right", 0.2, &"kneeling_left", &"RESET", 0.2, &"kneeling_left", &"bottom_attack_right", 0.2, &"kneeling_left", &"idle_left", 0.2, &"kneeling_left", &"idle_right", 0.2, &"kneeling_left", &"attack_left", 0.2, &"kneeling_left", &"attack_right", 0.2, &"kneeling_left", &"bottom_attack_left", 0.2, &"kneeling_left", &"kneeling_left", 0.2, &"kneeling_left", &"kneeling_right", 0.2, &"kneeling_left", &"walk_left", 0.2, &"kneeling_left", &"walk_right", 0.2, &"kneeling_left", &"walking_attack_left", 0.2, &"kneeling_left", &"walking_attack_right", 0.2, &"kneeling_left", &"jump_left", 0.2, &"kneeling_left", &"jump_right", 0.2, &"kneeling_right", &"RESET", 0.2, &"kneeling_right", &"bottom_attack_right", 0.2, &"kneeling_right", &"idle_left", 0.2, &"kneeling_right", &"idle_right", 0.2, &"kneeling_right", &"attack_left", 0.2, &"kneeling_right", &"attack_right", 0.2, &"kneeling_right", &"bottom_attack_left", 0.2, &"kneeling_right", &"kneeling_left", 0.2, &"kneeling_right", &"kneeling_right", 0.2, &"kneeling_right", &"walk_left", 0.2, &"kneeling_right", &"walk_right", 0.2, &"kneeling_right", &"walking_attack_left", 0.2, &"kneeling_right", &"walking_attack_right", 0.2, &"kneeling_right", &"jump_left", 0.2, &"kneeling_right", &"jump_right", 0.2, &"walk_left", &"RESET", 0.2, &"walk_left", &"bottom_attack_right", 0.2, &"walk_left", &"idle_left", 0.2, &"walk_left", &"idle_right", 0.2, &"walk_left", &"attack_left", 0.2, &"walk_left", &"attack_right", 0.2, &"walk_left", &"bottom_attack_left", 0.2, &"walk_left", &"kneeling_left", 0.2, &"walk_left", &"kneeling_right", 0.2, &"walk_left", &"walk_left", 0.2, &"walk_left", &"walk_right", 0.2, &"walk_left", &"walking_attack_left", 0.2, &"walk_left", &"walking_attack_right", 0.2, &"walk_left", &"jump_left", 0.2, &"walk_left", &"jump_right", 0.2, &"walk_right", &"RESET", 0.2, &"walk_right", &"bottom_attack_right", 0.2, &"walk_right", &"idle_left", 0.2, &"walk_right", &"idle_right", 0.2, &"walk_right", &"attack_left", 0.2, &"walk_right", &"attack_right", 0.2, &"walk_right", &"bottom_attack_left", 0.2, &"walk_right", &"kneeling_left", 0.2, &"walk_right", &"kneeling_right", 0.2, &"walk_right", &"walk_left", 0.2, &"walk_right", &"walk_right", 0.2, &"walk_right", &"walking_attack_left", 0.2, &"walk_right", &"walking_attack_right", 0.2, &"walk_right", &"jump_left", 0.2, &"walk_right", &"jump_right", 0.2, &"walking_attack_left", &"RESET", 0.2, &"walking_attack_left", &"bottom_attack_right", 0.2, &"walking_attack_left", &"idle_left", 0.2, &"walking_attack_left", &"idle_right", 0.2, &"walking_attack_left", &"attack_left", 0.2, &"walking_attack_left", &"attack_right", 0.2, &"walking_attack_left", &"bottom_attack_left", 0.2, &"walking_attack_left", &"kneeling_left", 0.2, &"walking_attack_left", &"kneeling_right", 0.2, &"walking_attack_left", &"walk_left", 0.2, &"walking_attack_left", &"walk_right", 0.2, &"walking_attack_left", &"walking_attack_left", 0.2, &"walking_attack_left", &"walking_attack_right", 0.2, &"walking_attack_left", &"jump_left", 0.2, &"walking_attack_left", &"jump_right", 0.2, &"walking_attack_right", &"RESET", 0.2, &"walking_attack_right", &"bottom_attack_right", 0.2, &"walking_attack_right", &"idle_left", 0.2, &"walking_attack_right", &"idle_right", 0.2, &"walking_attack_right", &"attack_left", 0.2, &"walking_attack_right", &"attack_right", 0.2, &"walking_attack_right", &"bottom_attack_left", 0.2, &"walking_attack_right", &"kneeling_left", 0.2, &"walking_attack_right", &"kneeling_right", 0.2, &"walking_attack_right", &"walk_left", 0.2, &"walking_attack_right", &"walk_right", 0.2, &"walking_attack_right", &"walking_attack_left", 0.2, &"walking_attack_right", &"walking_attack_right", 0.2, &"walking_attack_right", &"jump_left", 0.2, &"walking_attack_right", &"jump_right", 0.2, &"jump_left", &"RESET", 0.2, &"jump_left", &"bottom_attack_right", 0.2, &"jump_left", &"idle_left", 0.2, &"jump_left", &"idle_right", 0.2, &"jump_left", &"attack_left", 0.2, &"jump_left", &"attack_right", 0.2, &"jump_left", &"bottom_attack_left", 0.2, &"jump_left", &"kneeling_left", 0.2, &"jump_left", &"kneeling_right", 0.2, &"jump_left", &"walk_left", 0.2, &"jump_left", &"walk_right", 0.2, &"jump_left", &"walking_attack_left", 0.2, &"jump_left", &"walking_attack_right", 0.2, &"jump_left", &"jump_left", 0.2, &"jump_left", &"jump_right", 0.2, &"jump_right", &"RESET", 0.2, &"jump_right", &"bottom_attack_right", 0.2, &"jump_right", &"idle_left", 0.2, &"jump_right", &"idle_right", 0.2, &"jump_right", &"attack_left", 0.2, &"jump_right", &"attack_right", 0.2, &"jump_right", &"bottom_attack_left", 0.2, &"jump_right", &"kneeling_left", 0.2, &"jump_right", &"kneeling_right", 0.2, &"jump_right", &"walk_left", 0.2, &"jump_right", &"walk_right", 0.2, &"jump_right", &"walking_attack_left", 0.2, &"jump_right", &"walking_attack_right", 0.2, &"jump_right", &"jump_left", 0.2, &"jump_right", &"jump_right", 0.2]
+blend_times = [&"RESET", &"RESET", 0.2, &"RESET", &"attack_left", 0.2, &"RESET", &"attack_right", 0.2, &"RESET", &"bottom_attack_left", 0.2, &"RESET", &"bottom_attack_right", 0.2, &"RESET", &"idle_left", 0.2, &"RESET", &"idle_right", 0.2, &"RESET", &"jump_left", 0.2, &"RESET", &"jump_right", 0.2, &"RESET", &"kneeling_left", 0.2, &"RESET", &"kneeling_right", 0.2, &"RESET", &"throw_left", 0.2, &"RESET", &"throw_right", 0.2, &"RESET", &"walk_left", 0.2, &"RESET", &"walk_right", 0.2, &"RESET", &"walking_attack_left", 0.2, &"RESET", &"walking_attack_right", 0.2, &"attack_left", &"RESET", 0.2, &"attack_left", &"attack_left", 0.2, &"attack_left", &"attack_right", 0.2, &"attack_left", &"bottom_attack_left", 0.2, &"attack_left", &"bottom_attack_right", 0.2, &"attack_left", &"idle_left", 0.2, &"attack_left", &"idle_right", 0.2, &"attack_left", &"jump_left", 0.2, &"attack_left", &"jump_right", 0.2, &"attack_left", &"kneeling_left", 0.2, &"attack_left", &"kneeling_right", 0.2, &"attack_left", &"throw_left", 0.2, &"attack_left", &"throw_right", 0.2, &"attack_left", &"walk_left", 0.2, &"attack_left", &"walk_right", 0.2, &"attack_left", &"walking_attack_left", 0.2, &"attack_left", &"walking_attack_right", 0.2, &"attack_right", &"RESET", 0.2, &"attack_right", &"attack_left", 0.2, &"attack_right", &"attack_right", 0.2, &"attack_right", &"bottom_attack_left", 0.2, &"attack_right", &"bottom_attack_right", 0.2, &"attack_right", &"idle_left", 0.2, &"attack_right", &"idle_right", 0.2, &"attack_right", &"jump_left", 0.2, &"attack_right", &"jump_right", 0.2, &"attack_right", &"kneeling_left", 0.2, &"attack_right", &"kneeling_right", 0.2, &"attack_right", &"throw_left", 0.2, &"attack_right", &"throw_right", 0.2, &"attack_right", &"walk_left", 0.2, &"attack_right", &"walk_right", 0.2, &"attack_right", &"walking_attack_left", 0.2, &"attack_right", &"walking_attack_right", 0.2, &"bottom_attack_left", &"RESET", 0.2, &"bottom_attack_left", &"attack_left", 0.2, &"bottom_attack_left", &"attack_right", 0.2, &"bottom_attack_left", &"bottom_attack_left", 0.2, &"bottom_attack_left", &"bottom_attack_right", 0.2, &"bottom_attack_left", &"idle_left", 0.2, &"bottom_attack_left", &"idle_right", 0.2, &"bottom_attack_left", &"jump_left", 0.2, &"bottom_attack_left", &"jump_right", 0.2, &"bottom_attack_left", &"kneeling_left", 0.2, &"bottom_attack_left", &"kneeling_right", 0.2, &"bottom_attack_left", &"throw_left", 0.2, &"bottom_attack_left", &"throw_right", 0.2, &"bottom_attack_left", &"walk_left", 0.2, &"bottom_attack_left", &"walk_right", 0.2, &"bottom_attack_left", &"walking_attack_left", 0.2, &"bottom_attack_left", &"walking_attack_right", 0.2, &"bottom_attack_right", &"RESET", 0.2, &"bottom_attack_right", &"attack_left", 0.2, &"bottom_attack_right", &"attack_right", 0.2, &"bottom_attack_right", &"bottom_attack_left", 0.2, &"bottom_attack_right", &"bottom_attack_right", 0.2, &"bottom_attack_right", &"idle_left", 0.2, &"bottom_attack_right", &"idle_right", 0.2, &"bottom_attack_right", &"jump_left", 0.2, &"bottom_attack_right", &"jump_right", 0.2, &"bottom_attack_right", &"kneeling_left", 0.2, &"bottom_attack_right", &"kneeling_right", 0.2, &"bottom_attack_right", &"throw_left", 0.2, &"bottom_attack_right", &"throw_right", 0.2, &"bottom_attack_right", &"walk_left", 0.2, &"bottom_attack_right", &"walk_right", 0.2, &"bottom_attack_right", &"walking_attack_left", 0.2, &"bottom_attack_right", &"walking_attack_right", 0.2, &"idle_left", &"RESET", 0.2, &"idle_left", &"attack_left", 0.2, &"idle_left", &"attack_right", 0.2, &"idle_left", &"bottom_attack_left", 0.2, &"idle_left", &"bottom_attack_right", 0.2, &"idle_left", &"idle_left", 0.2, &"idle_left", &"idle_right", 0.2, &"idle_left", &"jump_left", 0.2, &"idle_left", &"jump_right", 0.2, &"idle_left", &"kneeling_left", 0.2, &"idle_left", &"kneeling_right", 0.2, &"idle_left", &"throw_left", 0.2, &"idle_left", &"throw_right", 0.2, &"idle_left", &"walk_left", 0.2, &"idle_left", &"walk_right", 0.2, &"idle_left", &"walking_attack_left", 0.2, &"idle_left", &"walking_attack_right", 0.2, &"idle_right", &"RESET", 0.2, &"idle_right", &"attack_left", 0.2, &"idle_right", &"attack_right", 0.2, &"idle_right", &"bottom_attack_left", 0.2, &"idle_right", &"bottom_attack_right", 0.2, &"idle_right", &"idle_left", 0.2, &"idle_right", &"idle_right", 0.2, &"idle_right", &"jump_left", 0.2, &"idle_right", &"jump_right", 0.2, &"idle_right", &"kneeling_left", 0.2, &"idle_right", &"kneeling_right", 0.2, &"idle_right", &"throw_left", 0.2, &"idle_right", &"throw_right", 0.2, &"idle_right", &"walk_left", 0.2, &"idle_right", &"walk_right", 0.2, &"idle_right", &"walking_attack_left", 0.2, &"idle_right", &"walking_attack_right", 0.2, &"jump_left", &"RESET", 0.2, &"jump_left", &"attack_left", 0.2, &"jump_left", &"attack_right", 0.2, &"jump_left", &"bottom_attack_left", 0.2, &"jump_left", &"bottom_attack_right", 0.2, &"jump_left", &"idle_left", 0.2, &"jump_left", &"idle_right", 0.2, &"jump_left", &"jump_left", 0.2, &"jump_left", &"jump_right", 0.2, &"jump_left", &"kneeling_left", 0.2, &"jump_left", &"kneeling_right", 0.2, &"jump_left", &"throw_left", 0.2, &"jump_left", &"throw_right", 0.2, &"jump_left", &"walk_left", 0.2, &"jump_left", &"walk_right", 0.2, &"jump_left", &"walking_attack_left", 0.2, &"jump_left", &"walking_attack_right", 0.2, &"jump_right", &"RESET", 0.2, &"jump_right", &"attack_left", 0.2, &"jump_right", &"attack_right", 0.2, &"jump_right", &"bottom_attack_left", 0.2, &"jump_right", &"bottom_attack_right", 0.2, &"jump_right", &"idle_left", 0.2, &"jump_right", &"idle_right", 0.2, &"jump_right", &"jump_left", 0.2, &"jump_right", &"jump_right", 0.2, &"jump_right", &"kneeling_left", 0.2, &"jump_right", &"kneeling_right", 0.2, &"jump_right", &"throw_left", 0.2, &"jump_right", &"throw_right", 0.2, &"jump_right", &"walk_left", 0.2, &"jump_right", &"walk_right", 0.2, &"jump_right", &"walking_attack_left", 0.2, &"jump_right", &"walking_attack_right", 0.2, &"kneeling_left", &"RESET", 0.2, &"kneeling_left", &"attack_left", 0.2, &"kneeling_left", &"attack_right", 0.2, &"kneeling_left", &"bottom_attack_left", 0.2, &"kneeling_left", &"bottom_attack_right", 0.2, &"kneeling_left", &"idle_left", 0.2, &"kneeling_left", &"idle_right", 0.2, &"kneeling_left", &"jump_left", 0.2, &"kneeling_left", &"jump_right", 0.2, &"kneeling_left", &"kneeling_left", 0.2, &"kneeling_left", &"kneeling_right", 0.2, &"kneeling_left", &"throw_left", 0.2, &"kneeling_left", &"throw_right", 0.2, &"kneeling_left", &"walk_left", 0.2, &"kneeling_left", &"walk_right", 0.2, &"kneeling_left", &"walking_attack_left", 0.2, &"kneeling_left", &"walking_attack_right", 0.2, &"kneeling_right", &"RESET", 0.2, &"kneeling_right", &"attack_left", 0.2, &"kneeling_right", &"attack_right", 0.2, &"kneeling_right", &"bottom_attack_left", 0.2, &"kneeling_right", &"bottom_attack_right", 0.2, &"kneeling_right", &"idle_left", 0.2, &"kneeling_right", &"idle_right", 0.2, &"kneeling_right", &"jump_left", 0.2, &"kneeling_right", &"jump_right", 0.2, &"kneeling_right", &"kneeling_left", 0.2, &"kneeling_right", &"kneeling_right", 0.2, &"kneeling_right", &"throw_left", 0.2, &"kneeling_right", &"throw_right", 0.2, &"kneeling_right", &"walk_left", 0.2, &"kneeling_right", &"walk_right", 0.2, &"kneeling_right", &"walking_attack_left", 0.2, &"kneeling_right", &"walking_attack_right", 0.2, &"throw_left", &"RESET", 0.2, &"throw_left", &"attack_left", 0.2, &"throw_left", &"attack_right", 0.2, &"throw_left", &"bottom_attack_left", 0.2, &"throw_left", &"bottom_attack_right", 0.2, &"throw_left", &"idle_left", 0.2, &"throw_left", &"idle_right", 0.2, &"throw_left", &"jump_left", 0.2, &"throw_left", &"jump_right", 0.2, &"throw_left", &"kneeling_left", 0.2, &"throw_left", &"kneeling_right", 0.2, &"throw_left", &"throw_left", 0.2, &"throw_left", &"throw_right", 0.2, &"throw_left", &"walk_left", 0.2, &"throw_left", &"walk_right", 0.2, &"throw_left", &"walking_attack_left", 0.2, &"throw_left", &"walking_attack_right", 0.2, &"throw_right", &"RESET", 0.2, &"throw_right", &"attack_left", 0.2, &"throw_right", &"attack_right", 0.2, &"throw_right", &"bottom_attack_left", 0.2, &"throw_right", &"bottom_attack_right", 0.2, &"throw_right", &"idle_left", 0.2, &"throw_right", &"idle_right", 0.2, &"throw_right", &"jump_left", 0.2, &"throw_right", &"jump_right", 0.2, &"throw_right", &"kneeling_left", 0.2, &"throw_right", &"kneeling_right", 0.2, &"throw_right", &"throw_left", 0.2, &"throw_right", &"throw_right", 0.2, &"throw_right", &"walk_left", 0.2, &"throw_right", &"walk_right", 0.2, &"throw_right", &"walking_attack_left", 0.2, &"throw_right", &"walking_attack_right", 0.2, &"walk_left", &"RESET", 0.2, &"walk_left", &"attack_left", 0.2, &"walk_left", &"attack_right", 0.2, &"walk_left", &"bottom_attack_left", 0.2, &"walk_left", &"bottom_attack_right", 0.2, &"walk_left", &"idle_left", 0.2, &"walk_left", &"idle_right", 0.2, &"walk_left", &"jump_left", 0.2, &"walk_left", &"jump_right", 0.2, &"walk_left", &"kneeling_left", 0.2, &"walk_left", &"kneeling_right", 0.2, &"walk_left", &"throw_left", 0.2, &"walk_left", &"throw_right", 0.2, &"walk_left", &"walk_left", 0.2, &"walk_left", &"walk_right", 0.2, &"walk_left", &"walking_attack_left", 0.2, &"walk_left", &"walking_attack_right", 0.2, &"walk_right", &"RESET", 0.2, &"walk_right", &"attack_left", 0.2, &"walk_right", &"attack_right", 0.2, &"walk_right", &"bottom_attack_left", 0.2, &"walk_right", &"bottom_attack_right", 0.2, &"walk_right", &"idle_left", 0.2, &"walk_right", &"idle_right", 0.2, &"walk_right", &"jump_left", 0.2, &"walk_right", &"jump_right", 0.2, &"walk_right", &"kneeling_left", 0.2, &"walk_right", &"kneeling_right", 0.2, &"walk_right", &"throw_left", 0.2, &"walk_right", &"throw_right", 0.2, &"walk_right", &"walk_left", 0.2, &"walk_right", &"walk_right", 0.2, &"walk_right", &"walking_attack_left", 0.2, &"walk_right", &"walking_attack_right", 0.2, &"walking_attack_left", &"RESET", 0.2, &"walking_attack_left", &"attack_left", 0.2, &"walking_attack_left", &"attack_right", 0.2, &"walking_attack_left", &"bottom_attack_left", 0.2, &"walking_attack_left", &"bottom_attack_right", 0.2, &"walking_attack_left", &"idle_left", 0.2, &"walking_attack_left", &"idle_right", 0.2, &"walking_attack_left", &"jump_left", 0.2, &"walking_attack_left", &"jump_right", 0.2, &"walking_attack_left", &"kneeling_left", 0.2, &"walking_attack_left", &"kneeling_right", 0.2, &"walking_attack_left", &"throw_left", 0.2, &"walking_attack_left", &"throw_right", 0.2, &"walking_attack_left", &"walk_left", 0.2, &"walking_attack_left", &"walk_right", 0.2, &"walking_attack_left", &"walking_attack_left", 0.2, &"walking_attack_left", &"walking_attack_right", 0.2, &"walking_attack_right", &"RESET", 0.2, &"walking_attack_right", &"attack_left", 0.2, &"walking_attack_right", &"attack_right", 0.2, &"walking_attack_right", &"bottom_attack_left", 0.2, &"walking_attack_right", &"bottom_attack_right", 0.2, &"walking_attack_right", &"idle_left", 0.2, &"walking_attack_right", &"idle_right", 0.2, &"walking_attack_right", &"jump_left", 0.2, &"walking_attack_right", &"jump_right", 0.2, &"walking_attack_right", &"kneeling_left", 0.2, &"walking_attack_right", &"kneeling_right", 0.2, &"walking_attack_right", &"throw_left", 0.2, &"walking_attack_right", &"throw_right", 0.2, &"walking_attack_right", &"walk_left", 0.2, &"walking_attack_right", &"walk_right", 0.2, &"walking_attack_right", &"walking_attack_left", 0.2, &"walking_attack_right", &"walking_attack_right", 0.2]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 active = false
