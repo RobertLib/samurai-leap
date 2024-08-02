@@ -2,8 +2,12 @@ class_name Player
 
 extends CharacterBody2D
 
+enum WEAPONS { SWORD, BAMBOO }
+
 const SPEED := 300.0
 const JUMP_VELOCITY := -400.0
+
+const ThrowingBambooScene := preload("res://weapons/throwing_bamboo/throwing_bamboo.tscn")
 
 var last_direction := 1.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -20,6 +24,8 @@ var is_attacking := false
 var is_attacking_from_below := false
 var green_crystals := 0
 var red_crystals := 0
+var weapon := WEAPONS.BAMBOO
+var bamboos_count := 2
 
 @onready var animation_tree := $AnimationTree as AnimationTree
 @onready var navbar := get_node("/root/Level/Navbar") as Navbar
@@ -28,6 +34,7 @@ var red_crystals := 0
 @onready var attack_area_position := ($Container/AttackArea as Area2D).position
 @onready var attack_area_bottom_position := Vector2(0, 200)
 @onready var face_injury := $Container/Polygons/Head/FaceInjury as Sprite2D
+@onready var sword_slash := $Container/SwordSlash as Sprite2D
 
 
 func _ready():
@@ -52,6 +59,7 @@ func _ready():
 
 	# Connect attack area signals
 	attack_area.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
+	attack_area.connect("area_entered", Callable(self, "_on_attack_area_area_entered"))
 
 
 func _process(_delta: float):
@@ -59,6 +67,9 @@ func _process(_delta: float):
 
 	if position.y >= 830:
 		position = start_position
+
+	if !is_attacking:
+		sword_slash.hide()
 
 
 func _physics_process(delta: float):
@@ -69,11 +80,13 @@ func _physics_process(delta: float):
 			SoundManager.play_sound("hero_jump_land")
 			_end_bottom_attack()
 	else:
+		if touched_ground:
+			touched_ground = false
+
 		velocity.y += gravity * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
-		touched_ground = false
 		is_on_ground = false
 		velocity.y = JUMP_VELOCITY
 		SoundManager.play_sound("hero_jump")
@@ -109,13 +122,46 @@ func _physics_process(delta: float):
 
 
 func _start_attack():
+	if weapon == WEAPONS.SWORD:
+		_start_sword_attack()
+	elif weapon == WEAPONS.BAMBOO:
+		_start_bamboo_attack()
+
+
+func _start_sword_attack():
 	is_attacking = true
 	attack_area.set_monitoring(true)  # Enable attack area monitoring
 	SoundManager.play_sound("hero_sword_slash_miss")
 	if get_tree():
-		await get_tree().create_timer(0.4).timeout
+		await get_tree().create_timer(0.5).timeout
 	is_attacking = false
 	attack_area.set_monitoring(false)  # Disable attack area monitoring
+
+
+func _start_bamboo_attack():
+	if bamboos_count <= 0:
+		return
+
+	is_attacking = true
+
+	var throwing_bamboo := ThrowingBambooScene.instantiate() as ThrowingBamboo
+	throwing_bamboo.position = position
+	throwing_bamboo.direction = last_direction
+
+	bamboos_count -= 1
+
+	get_parent().add_child(throwing_bamboo)
+
+	if get_tree():
+		await get_tree().create_timer(0.4).timeout
+
+	is_attacking = false
+
+	if bamboos_count <= 0:
+		if get_tree():
+			await get_tree().create_timer(0.2).timeout
+
+		weapon = WEAPONS.SWORD
 
 
 func _start_bottom_attack():
@@ -141,6 +187,12 @@ func _on_attack_area_body_entered(body: Node2D):
 
 		if body.is_in_group("Good") and is_attacking_from_below:
 			_bounce_off_the_good_blob(body)
+
+
+func _on_attack_area_area_entered(area: Area2D):
+	if area.is_in_group("Environment"):
+		if area.is_in_group("Bamboo"):
+			area.spawn_bamboo_twigs()
 
 
 func _on_collision_with_enemy(enemy: CharacterBody2D):
@@ -210,12 +262,18 @@ func _update_animation_parameters():
 		animation_tree.set(
 			"parameters/Move/blend_position", Vector2(last_direction, 0 if is_on_floor() else 1)
 		)
+
+		var attack_value_y := 0.0
+
+		if is_attacking_from_below:
+			attack_value_y = -1
+		elif weapon == WEAPONS.BAMBOO:
+			attack_value_y = -0.5 if velocity == Vector2.ZERO else 0.5
+		elif velocity != Vector2.ZERO:
+			attack_value_y = 1
+
 		animation_tree.set(
-			"parameters/Attack/blend_position",
-			Vector2(
-				last_direction,
-				-1 if is_attacking_from_below else 0 if velocity == Vector2.ZERO else 1
-			)
+			"parameters/Attack/blend_position", Vector2(last_direction, attack_value_y)
 		)
 
 
@@ -251,3 +309,9 @@ func pick_up_crystal(type: String):
 		red_crystals += 1
 
 	navbar.update_crystals(green_crystals, red_crystals)
+
+
+func pick_up_bamboo_twig():
+	bamboos_count += 1
+
+	weapon = WEAPONS.BAMBOO
