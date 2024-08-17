@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Samurai Leap"
-run/main_scene="res://levels/level1/level.tscn"
+run/main_scene="res://intro/intro.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
