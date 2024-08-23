@@ -9,6 +9,7 @@ anchors_preset = 0
 script = ExtResource("1_wt0xn")
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 stream = ExtResource("1_16jw6")
