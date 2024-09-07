@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://qykm17vwmexr"]
+
+[ext_resource type="Script" path="res://map/map.gd" id="1_aadrp"]
+[ext_resource type="Texture2D" uid="uid://bh37yt06t7vw1" path="res://map/map.jpg" id="1_kv6dh"]
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_aadrp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.857143, 0.857143)
+texture = ExtResource("1_kv6dh")

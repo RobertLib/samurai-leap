@@ -25,5 +25,6 @@ func _process(delta: float):
 
 func _on_body_entered(body: Node2D):
 	if body.is_in_group("Enemies"):
+		SoundManager.play_sound("bamboo_hit")
 		body.take_damage(1)
 		queue_free()

@@ -2,7 +2,7 @@ class_name BambooTwig
 
 extends RigidBody2D
 
-const MAX_BAMBOOS := 10
+const MAX_BAMBOOS := 2
 
 var colliding_player: Player = null
 var timer := 0.0
