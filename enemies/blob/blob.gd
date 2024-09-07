@@ -2,8 +2,13 @@ class_name Blob
 
 extends CharacterBody2D
 
+enum BELIEFS { GOOD, EVIL }
+
 const CrystalGreenScene := preload("res://items/crystal/crystal_green/crystal_green.tscn")
 const CrystalRedScene := preload("res://items/crystal/crystal_red/crystal_red.tscn")
+
+@export var beliefs: BELIEFS = BELIEFS.GOOD
+@export var lives := 1
 
 var direction := -1
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -13,7 +18,6 @@ var direction_change_delay := 0.5
 var direction_change_timer := 0.0
 var attack_delay := 0.5
 var attack_timer := 0.0
-var lives := 1
 
 @onready var container := $Container as Node2D
 @onready var mouth := $Container/Mouth as Node2D
@@ -22,6 +26,7 @@ var lives := 1
 @onready var raycast_right := $RayCast_Right as RayCast2D
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
 @onready var animation_tree := $AnimationTree as AnimationTree
+@onready var dialog_area := $DialogArea as DialogArea if has_node("DialogArea") else null
 
 
 func _ready():
@@ -68,9 +73,9 @@ func _physics_process(delta: float):
 					change_direction()
 			if collision.get_collider().is_in_group("Enemies"):
 				_on_collision_with_enemy(collision.get_collider())
-			if collision.get_collider().is_in_group("Player"):
+			if collision.get_collider() is Player:
 				_on_collision_with_player(collision.get_collider())
-			if collision.get_collider().is_in_group("Crystal"):
+			if collision.get_collider() is Crystal:
 				_on_collision_with_crystal(collision.get_collider())
 
 	direction_change_timer = max(0, direction_change_timer - delta)
@@ -91,11 +96,11 @@ func change_direction():
 
 
 func _on_collision_with_enemy(enemy: CharacterBody2D):
-	if enemy.is_in_group("Blob"):
+	if enemy is Blob:
 		change_direction()
 		enemy.change_direction()
 
-		if is_in_group("Evil") and enemy.is_in_group("Good"):
+		if beliefs == BELIEFS.EVIL and enemy.beliefs == BELIEFS.GOOD:
 			_attack(enemy)
 			enemy.bounce_off_the_evil_blob(self)
 
@@ -107,12 +112,17 @@ func bounce_off_the_evil_blob(blob: Blob):
 
 
 func _on_collision_with_player(_player: Player):
-	if is_in_group("Good"):
+	if beliefs == BELIEFS.GOOD:
 		change_direction()
+	else:
+		if velocity.x > 0 and position.x < _player.position.x:
+			velocity.x = 0
+		elif velocity.x < 0 and position.x > _player.position.x:
+			velocity.x = 0
 
 
 func _on_collision_with_crystal(crystal: Crystal):
-	if is_in_group("Evil") and crystal.is_in_group("Red"):
+	if beliefs == BELIEFS.EVIL and crystal.type == Crystal.TYPE.RED:
 		crystal.queue_free()
 		speed += 23
 		eyes.show()
@@ -169,6 +179,10 @@ func take_damage(damage: int):
 		animation_tree.set("parameters/conditions/walk", true)
 	else:
 		_spawn_crystals()
+
+		if dialog_area and dialog_area.has_method("show_dialog"):
+			dialog_area.show_dialog()
+
 		queue_free()
 
 
@@ -177,7 +191,8 @@ func _spawn_crystals():
 
 	for i in range(num_crystals):
 		var crystal := (
-			(CrystalRedScene if is_in_group("Good") else CrystalGreenScene).instantiate() as Crystal
+			(CrystalRedScene if beliefs == BELIEFS.GOOD else CrystalGreenScene).instantiate()
+			as Crystal
 		)
 
 		crystal.global_position = global_position

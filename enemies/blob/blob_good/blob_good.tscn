@@ -124,7 +124,7 @@ states/walk/position = Vector2(376.737, 100.236)
 transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_1f3ym"), "walk", "damage", SubResource("AnimationNodeStateMachineTransition_j7xtb"), "damage", "walk", SubResource("AnimationNodeStateMachineTransition_psyl8")]
 graph_offset = Vector2(26.652, -39.984)
 
-[node name="Blob" type="CharacterBody2D" groups=["Blob", "Enemies", "Good"]]
+[node name="Blob" type="CharacterBody2D" groups=["Enemies"]]
 z_index = 1
 position = Vector2(0, -1)
 collision_layer = 4
@@ -168,3 +168,6 @@ tree_root = SubResource("AnimationNodeStateMachine_pvyle")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/damage = false
 parameters/conditions/walk = false
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+scale = Vector2(10, 10)

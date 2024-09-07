@@ -6,6 +6,7 @@ enum WEAPONS { SWORD, BAMBOO }
 
 const SPEED := 300.0
 const JUMP_VELOCITY := -400.0
+const LIVES := 3
 
 const ThrowingBambooScene := preload("res://weapons/throwing_bamboo/throwing_bamboo.tscn")
 
@@ -13,19 +14,20 @@ var last_direction := 1.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var start_position := Vector2.ZERO
-var lives := 3
+var lives := LIVES
 var is_immortal := false
 var immortal_blink_time := 0.1
 var blink_timer: Timer
 var immortal_timer: Timer
 var touched_ground := false
-var is_on_ground := false
 var is_attacking := false
 var is_attacking_from_below := false
 var green_crystals := 0
 var red_crystals := 0
-var weapon := WEAPONS.BAMBOO
-var bamboos_count := 2
+var weapon := WEAPONS.SWORD
+var bamboos_count := 0
+var attack_timer := 0.0
+var jump_timer := 0.0
 
 @onready var animation_tree := $AnimationTree as AnimationTree
 @onready var navbar := get_node("/root/Level/Navbar") as Navbar
@@ -35,6 +37,8 @@ var bamboos_count := 2
 @onready var attack_area_bottom_position := Vector2(0, 200)
 @onready var face_injury := $Container/Polygons/Head/FaceInjury as Sprite2D
 @onready var sword_slash := $Container/SwordSlash as Sprite2D
+@onready var ray_cast := $RayCast2D as RayCast2D
+@onready var level := get_node("/root/Level") as Level
 
 
 func _ready():
@@ -62,14 +66,17 @@ func _ready():
 	attack_area.connect("area_entered", Callable(self, "_on_attack_area_area_entered"))
 
 
-func _process(_delta: float):
+func _process(delta: float):
 	_update_animation_parameters()
 
-	if position.y >= 830:
+	if position.y >= level.get_limit_bottom():
 		position = start_position
 
 	if !is_attacking:
 		sword_slash.hide()
+
+	attack_timer = max(0, attack_timer - delta)
+	jump_timer = max(0, jump_timer - delta)
 
 
 func _physics_process(delta: float):
@@ -83,11 +90,18 @@ func _physics_process(delta: float):
 		if touched_ground:
 			touched_ground = false
 
+		if velocity.y > 1000:
+			velocity.y = 1000
+
 		velocity.y += gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_up") and is_on_floor():
-		is_on_ground = false
+	if Input.is_action_just_pressed("ui_up") and (is_on_floor() or ray_cast.is_colliding()):
+		if jump_timer > 0:
+			return
+
+		jump_timer = 0.75
+
 		velocity.y = JUMP_VELOCITY
 		SoundManager.play_sound("hero_jump")
 
@@ -115,13 +129,16 @@ func _physics_process(delta: float):
 		var collision := get_slide_collision(i)
 
 		if collision:
-			if collision.get_collider().is_in_group("Terrain"):
-				is_on_ground = true
 			if collision.get_collider().is_in_group("Enemies"):
 				_on_collision_with_enemy(collision.get_collider())
 
 
 func _start_attack():
+	if attack_timer > 0:
+		return
+
+	attack_timer = 0.75
+
 	if weapon == WEAPONS.SWORD:
 		_start_sword_attack()
 	elif weapon == WEAPONS.BAMBOO:
@@ -151,6 +168,8 @@ func _start_bamboo_attack():
 	bamboos_count -= 1
 
 	get_parent().add_child(throwing_bamboo)
+
+	SoundManager.play_sound("bamboo_throw")
 
 	if get_tree():
 		await get_tree().create_timer(0.4).timeout
@@ -185,24 +204,24 @@ func _on_attack_area_body_entered(body: Node2D):
 		body.take_damage(1)
 		SoundManager.play_sound("hero_sword_slash_hit")
 
-		if body.is_in_group("Good") and is_attacking_from_below:
+		if body.beliefs == Blob.BELIEFS.GOOD and is_attacking_from_below:
 			_bounce_off_the_good_blob(body)
 
 
 func _on_attack_area_area_entered(area: Area2D):
 	if area.is_in_group("Environment"):
-		if area.is_in_group("Bamboo"):
+		if area is BambooTree:
 			area.spawn_bamboo_twigs()
 
 
 func _on_collision_with_enemy(enemy: CharacterBody2D):
 	if not is_immortal:
 		if enemy is Blob:
-			if enemy.is_in_group("Good"):
-				if not is_on_ground:
+			if enemy.beliefs == Blob.BELIEFS.GOOD:
+				if not ray_cast.is_colliding():
 					_bounce_off_the_good_blob(enemy)
 
-			if enemy.is_in_group("Evil"):
+			if enemy.beliefs == Blob.BELIEFS.EVIL:
 				_bounce_off_the_evil_blob(enemy)
 				_subtract_life()
 				_start_immortality()
@@ -236,7 +255,13 @@ func _subtract_life():
 	navbar.update_lives(lives)
 
 	if lives == 0:
-		get_tree().reload_current_scene()
+		var last_active_checkpoint := level.get_last_active_checkpoint()
+
+		if last_active_checkpoint:
+			position = last_active_checkpoint.position
+			lives = LIVES
+		else:
+			get_tree().reload_current_scene()
 
 
 func _update_animation_parameters():

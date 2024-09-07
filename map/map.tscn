@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://qykm17vwmexr"]
+
+[ext_resource type="Script" path="res://map/map.gd" id="1_aadrp"]
+[ext_resource type="Texture2D" uid="uid://bh37yt06t7vw1" path="res://map/map.jpg" id="1_kv6dh"]
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_aadrp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.857143, 0.857143)
+texture = ExtResource("1_kv6dh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 175.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+color = Color(0.145884, 0.29171, 0.240955, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 26
+text = "I have got so many questions. Like where is everyone? Where did these creatures came from? Or why are they attacking everything. I don't like the idea being dark underground with them, but if i want some answers, i will have to hide the worries for later."
+autowrap_mode = 3
