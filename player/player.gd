@@ -24,8 +24,8 @@ var is_attacking := false
 var is_attacking_from_below := false
 var green_crystals := 0
 var red_crystals := 0
-var weapon := WEAPONS.BAMBOO
-var bamboos_count := 2
+var weapon := WEAPONS.SWORD
+var bamboos_count := 0
 
 @onready var animation_tree := $AnimationTree as AnimationTree
 @onready var navbar := get_node("/root/Level/Navbar") as Navbar
@@ -35,6 +35,7 @@ var bamboos_count := 2
 @onready var attack_area_bottom_position := Vector2(0, 200)
 @onready var face_injury := $Container/Polygons/Head/FaceInjury as Sprite2D
 @onready var sword_slash := $Container/SwordSlash as Sprite2D
+@onready var level := get_node("/root/Level") as Level
 
 
 func _ready():
@@ -65,7 +66,7 @@ func _ready():
 func _process(_delta: float):
 	_update_animation_parameters()
 
-	if position.y >= 830:
+	if position.y >= level.get_limit_bottom():
 		position = start_position
 
 	if !is_attacking:
@@ -83,10 +84,13 @@ func _physics_process(delta: float):
 		if touched_ground:
 			touched_ground = false
 
+		if velocity.y > 1000:
+			velocity.y = 1000
+
 		velocity.y += gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_up") and is_on_floor():
+	if Input.is_action_just_pressed("ui_up") and (is_on_floor() or is_on_ground):
 		is_on_ground = false
 		velocity.y = JUMP_VELOCITY
 		SoundManager.play_sound("hero_jump")
@@ -152,6 +156,8 @@ func _start_bamboo_attack():
 
 	get_parent().add_child(throwing_bamboo)
 
+	SoundManager.play_sound("bamboo_throw")
+
 	if get_tree():
 		await get_tree().create_timer(0.4).timeout
 
@@ -185,24 +191,24 @@ func _on_attack_area_body_entered(body: Node2D):
 		body.take_damage(1)
 		SoundManager.play_sound("hero_sword_slash_hit")
 
-		if body.is_in_group("Good") and is_attacking_from_below:
+		if body.beliefs == Blob.BELIEFS.GOOD and is_attacking_from_below:
 			_bounce_off_the_good_blob(body)
 
 
 func _on_attack_area_area_entered(area: Area2D):
 	if area.is_in_group("Environment"):
-		if area.is_in_group("Bamboo"):
+		if area is BambooTree:
 			area.spawn_bamboo_twigs()
 
 
 func _on_collision_with_enemy(enemy: CharacterBody2D):
 	if not is_immortal:
 		if enemy is Blob:
-			if enemy.is_in_group("Good"):
+			if enemy.beliefs == Blob.BELIEFS.GOOD:
 				if not is_on_ground:
 					_bounce_off_the_good_blob(enemy)
 
-			if enemy.is_in_group("Evil"):
+			if enemy.beliefs == Blob.BELIEFS.EVIL:
 				_bounce_off_the_evil_blob(enemy)
 				_subtract_life()
 				_start_immortality()

@@ -2,6 +2,10 @@ class_name Crystal
 
 extends RigidBody2D
 
+enum TYPE { GREEN, RED }
+
+@export var type: TYPE = TYPE.GREEN
+
 var colliding_player: Player = null
 
 
@@ -13,7 +17,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float):
 	if colliding_player and Input.is_action_pressed("ui_down"):
-		colliding_player.pick_up_crystal("green" if is_in_group("Green") else "red")
+		colliding_player.pick_up_crystal("green" if type == TYPE.GREEN else "red")
 		queue_free()
 
 
