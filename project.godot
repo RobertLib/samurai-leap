@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SoundManager="*res://scripts/sound_manager.gd"
+Globals="*res://globals/globals.gd"
 
 [display]
 
