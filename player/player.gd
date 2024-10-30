@@ -70,7 +70,12 @@ func _process(delta: float):
 	_update_animation_parameters()
 
 	if position.y >= level.get_limit_bottom():
-		position = start_position
+		var last_active_checkpoint := level.get_last_active_checkpoint()
+
+		if last_active_checkpoint:
+			position = last_active_checkpoint.position
+		else:
+			position = start_position
 
 	if !is_attacking:
 		sword_slash.hide()
@@ -254,7 +259,7 @@ func _subtract_life():
 
 	navbar.update_lives(lives)
 
-	if lives == 0:
+	if lives <= 0:
 		var last_active_checkpoint := level.get_last_active_checkpoint()
 
 		if last_active_checkpoint:
