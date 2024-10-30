@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh37yt06t7vw1"
-path="res://.godot/imported/map.jpg-81ec7eab1741a43ba78b17f324798d8d.ctex"
+uid="uid://dmxngku5lm1sr"
+path="res://.godot/imported/blob_gold_mouth.png-808a3c28a6c5c83ed911cf72f1f36328.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://map/map.jpg"
-dest_files=["res://.godot/imported/map.jpg-81ec7eab1741a43ba78b17f324798d8d.ctex"]
+source_file="res://enemies/blob/blob_gold/blob_gold_mouth.png"
+dest_files=["res://.godot/imported/blob_gold_mouth.png-808a3c28a6c5c83ed911cf72f1f36328.ctex"]
 
 [params]
 
