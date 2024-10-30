@@ -30,6 +30,9 @@ func get_limit_bottom() -> float:
 
 
 func get_last_active_checkpoint() -> Checkpoint:
+	if !checkpoints:
+		return null
+
 	for checkpoint: Checkpoint in checkpoints.get_children():
 		if checkpoint.active:
 			return checkpoint

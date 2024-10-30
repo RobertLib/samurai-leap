@@ -32,7 +32,7 @@ var attack_timer := 0.0
 func _ready():
 	var animation_start_delay := randf_range(0, animation_player.get_animation("walk").length)
 
-	if get_tree():
+	if is_inside_tree():
 		await get_tree().create_timer(animation_start_delay).timeout
 
 	animation_tree.active = true
@@ -171,7 +171,7 @@ func take_damage(damage: int):
 	_animate_scale(scale * 0.85 / damage)
 
 	animation_tree.set("parameters/conditions/damage", true)
-	if get_tree():
+	if is_inside_tree():
 		await get_tree().create_timer(0.2).timeout
 
 	if lives > 0:

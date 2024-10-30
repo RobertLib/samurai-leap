@@ -44,6 +44,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_4="Item"
 2d_physics/layer_5="Weapon"
 2d_physics/layer_6="Environment"
+2d_physics/layer_7="Trap"
 
 [rendering]
 

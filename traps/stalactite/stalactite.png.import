@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh37yt06t7vw1"
-path="res://.godot/imported/map.jpg-81ec7eab1741a43ba78b17f324798d8d.ctex"
+uid="uid://cx6kkwcs6anpd"
+path="res://.godot/imported/stalactite.png-14b064a1981744913451bf077cd84bd4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://map/map.jpg"
-dest_files=["res://.godot/imported/map.jpg-81ec7eab1741a43ba78b17f324798d8d.ctex"]
+source_file="res://traps/stalactite/stalactite.png"
+dest_files=["res://.godot/imported/stalactite.png-14b064a1981744913451bf077cd84bd4.ctex"]
 
 [params]
 

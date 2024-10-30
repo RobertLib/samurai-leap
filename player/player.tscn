@@ -5271,7 +5271,7 @@ graph_offset = Vector2(39.978, -59.658)
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
 scale = Vector2(0.3, 0.3)
-collision_mask = 6
+collision_mask = 70
 script = ExtResource("1_ukkd8")
 
 [node name="Container" type="Node2D" parent="."]

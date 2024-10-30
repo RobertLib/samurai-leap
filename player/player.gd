@@ -70,7 +70,12 @@ func _process(delta: float):
 	_update_animation_parameters()
 
 	if position.y >= level.get_limit_bottom():
-		position = start_position
+		var last_active_checkpoint := level.get_last_active_checkpoint()
+
+		if last_active_checkpoint:
+			position = last_active_checkpoint.position
+		else:
+			position = start_position
 
 	if !is_attacking:
 		sword_slash.hide()
@@ -131,6 +136,9 @@ func _physics_process(delta: float):
 		if collision:
 			if collision.get_collider().is_in_group("Enemies"):
 				_on_collision_with_enemy(collision.get_collider())
+			if collision.get_collider().is_in_group("Traps"):
+				_subtract_life()
+				_start_immortality()
 
 
 func _start_attack():
@@ -149,7 +157,7 @@ func _start_sword_attack():
 	is_attacking = true
 	attack_area.set_monitoring(true)  # Enable attack area monitoring
 	SoundManager.play_sound("hero_sword_slash_miss")
-	if get_tree():
+	if is_inside_tree():
 		await get_tree().create_timer(0.5).timeout
 	is_attacking = false
 	attack_area.set_monitoring(false)  # Disable attack area monitoring
@@ -171,13 +179,13 @@ func _start_bamboo_attack():
 
 	SoundManager.play_sound("bamboo_throw")
 
-	if get_tree():
+	if is_inside_tree():
 		await get_tree().create_timer(0.4).timeout
 
 	is_attacking = false
 
 	if bamboos_count <= 0:
-		if get_tree():
+		if is_inside_tree():
 			await get_tree().create_timer(0.2).timeout
 
 		weapon = WEAPONS.SWORD
@@ -194,7 +202,7 @@ func _end_bottom_attack():
 	is_attacking = false
 	attack_area.set_monitoring(false)  # Disable attack area monitoring
 	attack_area.position = attack_area_position
-	if get_tree():
+	if is_inside_tree():
 		await get_tree().create_timer(0.2).timeout
 	is_attacking_from_below = false
 
@@ -250,17 +258,20 @@ func _bounce_off_the_evil_blob(blob: Blob):
 
 
 func _subtract_life():
+	if is_immortal:
+		return
+
 	lives -= 1
 
 	navbar.update_lives(lives)
 
-	if lives == 0:
+	if lives <= 0:
 		var last_active_checkpoint := level.get_last_active_checkpoint()
 
 		if last_active_checkpoint:
 			position = last_active_checkpoint.position
 			lives = LIVES
-		else:
+		elif is_inside_tree():
 			get_tree().reload_current_scene()
 
 
@@ -303,11 +314,13 @@ func _update_animation_parameters():
 
 
 func _start_immortality():
+	if is_immortal or not is_inside_tree():
+		return
+
 	is_immortal = true
 	set_collision_mask_value(3, false)
 	face_injury.show()
-	if get_tree():
-		await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5).timeout
 	face_injury.hide()
 	immortal_timer.start()
 	blink_timer.start()
