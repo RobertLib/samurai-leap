@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://qykm17vwmexr"]
+[gd_scene load_steps=5 format=3 uid="uid://qykm17vwmexr"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_aadrp"]
 [ext_resource type="Texture2D" uid="uid://bh37yt06t7vw1" path="res://map/map1.jpg" id="1_kv6dh"]
 [ext_resource type="Texture2D" uid="uid://b82tia6rxj4bf" path="res://map/map2.jpg" id="3_fdmpu"]
+[ext_resource type="Texture2D" uid="uid://bethdnvsdd5yd" path="res://map/map3.jpg" id="4_etitd"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_aadrp")
@@ -18,6 +19,12 @@ visible = false
 position = Vector2(576, 324)
 scale = Vector2(0.857143, 0.857143)
 texture = ExtResource("3_fdmpu")
+
+[node name="Map3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(576.696, 324.071)
+scale = Vector2(0.796393, 0.796394)
+texture = ExtResource("4_etitd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -56,4 +63,12 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 26
 text = "There are more type of these creatures out there and still not a single human soul around. Something really weird is going on. I know where Im now, so I will head to the village. But to get there, I need to go through the desert first. The sun is burning me already only thinking about it. There used to be a lake there, but long time ago. It is just dead land now. I dont think anything lives there, I mean I wish, I still dont know anything about these guys."
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 26
+text = "After all of this i feel like I can survive anything, yet I didn't get closer to finding out what is going on. The Village is my best chance, I really hope it's still there and more importantly, peaople are."
 autowrap_mode = 3

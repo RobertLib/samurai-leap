@@ -75,8 +75,6 @@ func _physics_process(delta: float):
 				_on_collision_with_enemy(collision.get_collider())
 			if collision.get_collider() is Player:
 				_on_collision_with_player(collision.get_collider())
-			if collision.get_collider() is Crystal:
-				_on_collision_with_crystal(collision.get_collider())
 
 	direction_change_timer = max(0, direction_change_timer - delta)
 	attack_timer = max(0, attack_timer - delta)
@@ -119,14 +117,6 @@ func _on_collision_with_player(_player: Player):
 			velocity.x = 0
 		elif velocity.x < 0 and position.x > _player.position.x:
 			velocity.x = 0
-
-
-func _on_collision_with_crystal(crystal: Crystal):
-	if beliefs == BELIEFS.EVIL and crystal.type == Crystal.TYPE.RED:
-		crystal.queue_free()
-		speed += 23
-		eyes.show()
-		SoundManager.play_sound("enemy_eating")
 
 
 func _attack(enemy: CharacterBody2D):
@@ -180,7 +170,7 @@ func take_damage(damage: int):
 	else:
 		_spawn_crystals()
 
-		if dialog_area and dialog_area.has_method("show_dialog"):
+		if has_node("DialogArea") and dialog_area and dialog_area.has_method("show_dialog"):
 			dialog_area.show_dialog()
 
 		queue_free()
@@ -202,3 +192,12 @@ func _spawn_crystals():
 		crystal.linear_velocity = Vector2(cos(angle), sin(angle)) * randf_range(200, 400)
 
 		get_parent().call_deferred("add_child", crystal)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Crystal:
+		if beliefs == BELIEFS.EVIL and body.type == Crystal.TYPE.RED:
+			body.queue_free()
+			speed += 23
+			eyes.show()
+			SoundManager.play_sound("enemy_eating")

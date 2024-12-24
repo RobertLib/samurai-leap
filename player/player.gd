@@ -353,3 +353,8 @@ func pick_up_bamboo_twig():
 	bamboos_count += 1
 
 	weapon = WEAPONS.BAMBOO
+
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().change_scene_to_file("res://level_selection/level_selection.tscn")

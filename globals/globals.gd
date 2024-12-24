@@ -1,6 +1,6 @@
 extends Node
 
-const LEVELS = 6
+const LEVELS = 9
 
 var level = 1
 
@@ -10,5 +10,11 @@ func next_level():
 
 	if level > LEVELS:
 		level = 1
+
+	get_tree().change_scene_to_file("res://levels/level%d/level.tscn" % level)
+
+
+func change_level(number: int):
+	level = number
 
 	get_tree().change_scene_to_file("res://levels/level%d/level.tscn" % level)

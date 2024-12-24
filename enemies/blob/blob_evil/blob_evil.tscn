@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b0iuhlw5qqp74"]
+[gd_scene load_steps=16 format=3 uid="uid://b0iuhlw5qqp74"]
 
 [ext_resource type="Script" path="res://enemies/blob/blob.gd" id="1_tcoa7"]
 [ext_resource type="Texture2D" uid="uid://c3v3vtlljm51p" path="res://enemies/blob/blob_evil/blob_evil.png" id="2_m6ppt"]
@@ -125,11 +125,15 @@ states/walk/position = Vector2(376.737, 100.236)
 transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_1f3ym"), "walk", "damage", SubResource("AnimationNodeStateMachineTransition_j7xtb"), "damage", "walk", SubResource("AnimationNodeStateMachineTransition_psyl8")]
 graph_offset = Vector2(26.652, -39.984)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k76ir"]
+radius = 32.0
+height = 72.0
+
 [node name="Blob" type="CharacterBody2D" groups=["Enemies"]]
 z_index = 1
 position = Vector2(0, -1)
 collision_layer = 4
-collision_mask = 14
+collision_mask = 6
 script = ExtResource("1_tcoa7")
 beliefs = 1
 
@@ -185,3 +189,13 @@ parameters/conditions/walk = false
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 scale = Vector2(10, 10)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_k76ir")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

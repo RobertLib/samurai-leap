@@ -17,7 +17,7 @@ func _on_video_stream_player_finished():
 
 
 func _change_scene():
-	get_tree().change_scene_to_file("res://levels/level1/level.tscn")
+	get_tree().change_scene_to_file("res://level_selection/level_selection.tscn")
 
 
 func _input(event):
