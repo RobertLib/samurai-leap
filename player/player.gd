@@ -137,8 +137,7 @@ func _physics_process(delta: float):
 			if collision.get_collider().is_in_group("Enemies"):
 				_on_collision_with_enemy(collision.get_collider())
 			if collision.get_collider().is_in_group("Traps"):
-				_subtract_life()
-				_start_immortality()
+				subtract_life()
 
 
 func _start_attack():
@@ -231,8 +230,7 @@ func _on_collision_with_enemy(enemy: CharacterBody2D):
 
 			if enemy.beliefs == Blob.BELIEFS.EVIL:
 				_bounce_off_the_evil_blob(enemy)
-				_subtract_life()
-				_start_immortality()
+				subtract_life()
 
 				(enemy as Blob).eating()
 
@@ -257,7 +255,7 @@ func _bounce_off_the_evil_blob(blob: Blob):
 	SoundManager.play_sound("hero_bounced_off_enemy")
 
 
-func _subtract_life():
+func subtract_life():
 	if is_immortal:
 		return
 
@@ -273,6 +271,8 @@ func _subtract_life():
 			lives = LIVES
 		elif is_inside_tree():
 			get_tree().reload_current_scene()
+
+	_start_immortality()
 
 
 func _update_animation_parameters():

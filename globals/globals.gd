@@ -1,6 +1,6 @@
 extends Node
 
-const LEVELS = 9
+const LEVELS = 12
 
 var level = 1
 

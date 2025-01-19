@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://qykm17vwmexr"]
+[gd_scene load_steps=6 format=3 uid="uid://qykm17vwmexr"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_aadrp"]
 [ext_resource type="Texture2D" uid="uid://bh37yt06t7vw1" path="res://map/map1.jpg" id="1_kv6dh"]
 [ext_resource type="Texture2D" uid="uid://b82tia6rxj4bf" path="res://map/map2.jpg" id="3_fdmpu"]
 [ext_resource type="Texture2D" uid="uid://bethdnvsdd5yd" path="res://map/map3.jpg" id="4_etitd"]
+[ext_resource type="Texture2D" uid="uid://cn8kw0xuy7hw6" path="res://map/map4.jpg" id="5_gv183"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_aadrp")
@@ -22,9 +23,15 @@ texture = ExtResource("3_fdmpu")
 
 [node name="Map3" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(576.696, 324.071)
-scale = Vector2(0.796393, 0.796394)
+position = Vector2(576, 324)
+scale = Vector2(0.857, 0.857)
 texture = ExtResource("4_etitd")
+
+[node name="Map4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(576, 324)
+scale = Vector2(0.857, 0.857)
+texture = ExtResource("5_gv183")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -71,4 +78,12 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 26
 text = "After all of this i feel like I can survive anything, yet I didn't get closer to finding out what is going on. The Village is my best chance, I really hope it's still there and more importantly, peaople are."
+autowrap_mode = 3
+
+[node name="Label4" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 26
+text = "..."
 autowrap_mode = 3
