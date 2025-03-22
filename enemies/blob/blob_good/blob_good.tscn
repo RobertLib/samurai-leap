@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://dctwetuw54i4s"]
 
-[ext_resource type="Script" path="res://enemies/blob/blob.gd" id="1_axm3p"]
+[ext_resource type="Script" uid="uid://b6unx46001qv6" path="res://enemies/blob/blob.gd" id="1_axm3p"]
 [ext_resource type="Texture2D" uid="uid://dya7fy2r6ii8s" path="res://enemies/blob/blob_good/blob_good.png" id="1_i2jmm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jo0a4"]
@@ -92,9 +92,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8kmj2"]
 _data = {
-"RESET": SubResource("Animation_xxb8i"),
-"damage": SubResource("Animation_qb3q4"),
-"walk": SubResource("Animation_r756t")
+&"RESET": SubResource("Animation_xxb8i"),
+&"damage": SubResource("Animation_qb3q4"),
+&"walk": SubResource("Animation_r756t")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_heblf"]

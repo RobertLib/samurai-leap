@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=4 uid="uid://ddswj2d6ititq"]
 
-[ext_resource type="Script" path="res://levels/level.gd" id="1_qflib"]
+[ext_resource type="Script" uid="uid://djn5t5qv55hg3" path="res://levels/level.gd" id="1_qflib"]
 [ext_resource type="PackedScene" uid="uid://c4jkl1ksuippr" path="res://player/player.tscn" id="2_e84o5"]
 [ext_resource type="PackedScene" uid="uid://dctwetuw54i4s" path="res://enemies/blob/blob_good/blob_good.tscn" id="3_a32u0"]
 [ext_resource type="PackedScene" uid="uid://b0iuhlw5qqp74" path="res://enemies/blob/blob_evil/blob_evil.tscn" id="4_3xccj"]
@@ -409,7 +409,6 @@ terrain_set_0/terrain_0/color = Color(0, 1, 0.833333, 1)
 sources/1 = SubResource("TileSetAtlasSource_eg17b")
 
 [node name="Level" type="Node2D"]
-position = Vector2(-1, 0)
 script = ExtResource("1_qflib")
 
 [node name="Player" parent="." instance=ExtResource("2_e84o5")]

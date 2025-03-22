@@ -1,8 +1,8 @@
-[gd_scene load_steps=23 format=4 uid="uid://cvueq8wcb6yit"]
+[gd_scene load_steps=27 format=4 uid="uid://cvueq8wcb6yit"]
 
 [ext_resource type="Texture2D" uid="uid://bwbpgrmm0n328" path="res://levels/tile_ground.png" id="1_icdpp"]
 [ext_resource type="Texture2D" uid="uid://4usub0lfqc5h" path="res://levels/background.png" id="1_jv3xj"]
-[ext_resource type="Script" path="res://levels/level.gd" id="1_qffnc"]
+[ext_resource type="Script" uid="uid://djn5t5qv55hg3" path="res://levels/level.gd" id="1_qffnc"]
 [ext_resource type="PackedScene" uid="uid://dctwetuw54i4s" path="res://enemies/blob/blob_good/blob_good.tscn" id="2_bdnrd"]
 [ext_resource type="PackedScene" uid="uid://c4jkl1ksuippr" path="res://player/player.tscn" id="2_qy5kv"]
 [ext_resource type="PackedScene" uid="uid://b0iuhlw5qqp74" path="res://enemies/blob/blob_evil/blob_evil.tscn" id="3_3gl0n"]
@@ -17,7 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://jornmxp788o5" path="res://environment/tree/tree.tscn" id="9_k2jue"]
 [ext_resource type="PackedScene" uid="uid://c24wxclns5gci" path="res://levels/end_of_level/end_of_level.tscn" id="9_kjgjo"]
 [ext_resource type="PackedScene" uid="uid://dwjbd1hqnu6tb" path="res://environment/mound/mound.tscn" id="10_73yuh"]
+[ext_resource type="Texture2D" uid="uid://dpv7u3ek6qtm8" path="res://levels/level1/empty_house.png" id="10_p082w"]
+[ext_resource type="Texture2D" uid="uid://bqqasnh8m1is0" path="res://levels/level1/basket.png" id="11_48gma"]
 [ext_resource type="PackedScene" uid="uid://j2foysh0xo1a" path="res://environment/stone/stone.tscn" id="11_waa2t"]
+[ext_resource type="Texture2D" uid="uid://dntefnyt52b3b" path="res://levels/level1/field.png" id="12_d2ejs"]
+[ext_resource type="Texture2D" uid="uid://e23oenyhwd2m" path="res://levels/level1/marketplace.png" id="13_3r5fn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eg17b"]
 texture = ExtResource("1_icdpp")
@@ -753,7 +757,6 @@ terrain_set_0/terrain_0/color = Color(0.267274, 0.551039, 0.841339, 1)
 sources/0 = SubResource("TileSetAtlasSource_duvmp")
 
 [node name="Level" type="Node2D"]
-position = Vector2(-1, 0)
 script = ExtResource("1_qffnc")
 
 [node name="Player" parent="." instance=ExtResource("2_qy5kv")]
@@ -804,7 +807,6 @@ tile_set = SubResource("TileSet_sshnk")
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 z_index = -1
 scale = Vector2(0.33, 0.33)
-tile_map_data = PackedByteArray("AAAOAAgAAAALAAIAAAAOAAcAAAALAAIAAAAOAAYAAAALAAIAAAANAAYAAAAJAAIAAAAMAAYAAAAJAAIAAAALAAYAAAAJAAIAAAAKAAYAAAAJAAIAAAAJAAYAAAAIAAEAAAAJAAcAAAAIAAEAAAAJAAgAAAAIAAEAAAAMAAkAAAAJAAIAAAALAAkAAAAJAAIAAAAKAAkAAAAJAAIAAAAJAAkAAAAIAAEAAAAKAAgAAAAJAAIAAAAKAAcAAAAJAAIAAAALAAcAAAAJAAIAAAAMAAcAAAAJAAIAAAANAAcAAAAJAAIAAAAMAAgAAAAJAAIAAAALAAgAAAAJAAIAAAANAAkAAAAJAAIAAAAOAAkAAAALAAIAAAAKAAUAAAAJAAIAAAALAAUAAAAJAAIAAAAMAAUAAAAJAAIAAAANAAUAAAAJAAIAAAAOAAoAAAALAAMAAAANAAoAAAAJAAMAAAAMAAoAAAAJAAMAAAALAAoAAAAJAAMAAAAKAAoAAAAJAAMAAAAJAAoAAAAIAAMAAAAKAAQAAAAKAAAAAAALAAQAAAAKAAAAAAAMAAQAAAAKAAAAAAANAAQAAAAKAAAAAAAJAAUAAAAIAAEAAAAOAAUAAAALAAIAAAAJAAQAAAAIAAAAAAAOAAQAAAALAAAAAAANAAgAAAAJAAIAAAA=")
 tile_set = SubResource("TileSet_jqcyr")
 
 [node name="Coins" type="Node2D" parent="."]
@@ -823,94 +825,37 @@ frame = 2
 [node name="Environment" type="Node2D" parent="."]
 z_index = -1
 
-[node name="EmptyHouse" type="ColorRect" parent="Environment"]
-offset_left = 665.0
-offset_top = 340.0
-offset_right = 865.0
-offset_bottom = 640.0
-
-[node name="Label" type="Label" parent="Environment/EmptyHouse"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Empty house"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="EmptyHouse" type="Sprite2D" parent="Environment"]
+position = Vector2(790, 340)
+texture = ExtResource("10_p082w")
 
 [node name="DialogArea" parent="Environment/EmptyHouse" instance=ExtResource("8_hi416")]
-position = Vector2(100, 220)
+position = Vector2(0, 220)
 text = "No one is home"
 
-[node name="Basket" type="ColorRect" parent="Environment"]
-offset_left = 2460.0
-offset_top = 485.0
-offset_right = 2610.0
-offset_bottom = 635.0
-
-[node name="Label" type="Label" parent="Environment/Basket"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Basket with
-rolled fruit"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Basket" type="Sprite2D" parent="Environment"]
+position = Vector2(2570, 600)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_48gma")
 
 [node name="DialogArea" parent="Environment/Basket" instance=ExtResource("8_hi416")]
-position = Vector2(75, 75)
+position = Vector2(-140, -8)
 text = "What is that? Is that an animal? I have never seen anything like it... But it looks friendly?"
 
-[node name="Field" type="ColorRect" parent="Environment"]
-offset_left = 5060.0
-offset_top = 485.0
-offset_right = 5210.0
-offset_bottom = 635.0
-
-[node name="Label" type="Label" parent="Environment/Field"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Field"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Field" type="Sprite2D" parent="Environment"]
+position = Vector2(5355, 550)
+texture = ExtResource("12_d2ejs")
 
 [node name="DialogArea" parent="Environment/Field" instance=ExtResource("8_hi416")]
-position = Vector2(75, 75)
+position = Vector2(-240, 20)
 text = "Where did everyone went to? These animals again?"
 
-[node name="Marketplace" type="ColorRect" parent="Environment"]
-offset_left = 8110.0
-offset_top = 485.0
-offset_right = 8260.0
-offset_bottom = 635.0
-
-[node name="Label" type="Label" parent="Environment/Marketplace"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Abandoned
-marketplace"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Marketplace" type="Sprite2D" parent="Environment"]
+position = Vector2(8270, 475)
+texture = ExtResource("13_3r5fn")
 
 [node name="DialogArea" parent="Environment/Marketplace" instance=ExtResource("8_hi416")]
-position = Vector2(75, 75)
+position = Vector2(-10, 90)
 text = "Seems like they run away in hurry... Who they were running from?"
 
 [node name="Slope" type="ColorRect" parent="Environment"]
@@ -918,8 +863,10 @@ offset_left = 11420.0
 offset_top = 485.0
 offset_right = 11570.0
 offset_bottom = 635.0
+color = Color(1, 1, 1, 0)
 
 [node name="Label" type="Label" parent="Environment/Slope"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -940,8 +887,10 @@ offset_left = 14400.0
 offset_top = 1055.0
 offset_right = 14550.0
 offset_bottom = 1205.0
+color = Color(1, 1, 1, 0)
 
 [node name="Label" type="Label" parent="Environment/End"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

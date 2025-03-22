@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dh8tc3rrngkhr"]
 
-[ext_resource type="Script" path="res://items/crystal/crystal.gd" id="1_h51bu"]
+[ext_resource type="Script" uid="uid://b0ik7cq1rflfl" path="res://items/crystal/crystal.gd" id="1_h51bu"]
 [ext_resource type="Texture2D" uid="uid://x0ci0wq1s3xx" path="res://items/crystal/crystal_red/crystal_red.png" id="1_qjg54"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_76d2k"]

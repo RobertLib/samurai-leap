@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=4 uid="uid://0hrw0gvgh3el"]
 
-[ext_resource type="Script" path="res://levels/level.gd" id="1_xt2bt"]
+[ext_resource type="Script" uid="uid://djn5t5qv55hg3" path="res://levels/level.gd" id="1_xt2bt"]
 [ext_resource type="PackedScene" uid="uid://c4jkl1ksuippr" path="res://player/player.tscn" id="2_jipo6"]
 [ext_resource type="Texture2D" uid="uid://bwbpgrmm0n328" path="res://levels/tile_ground.png" id="3_8gmx4"]
 [ext_resource type="PackedScene" uid="uid://ddmwjv4kf0swh" path="res://environment/rock/rock.tscn" id="5_ux2i1"]
@@ -417,7 +417,6 @@ terrain_set_0/terrain_0/color = Color(0, 1, 0.833333, 1)
 sources/1 = SubResource("TileSetAtlasSource_8k0jw")
 
 [node name="Level" type="Node2D"]
-position = Vector2(-1, 0)
 script = ExtResource("1_xt2bt")
 
 [node name="Player" parent="." instance=ExtResource("2_jipo6")]

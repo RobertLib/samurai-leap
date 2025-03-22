@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bl41i5rhmoxjt"]
 
 [ext_resource type="Texture2D" uid="uid://cx6kkwcs6anpd" path="res://traps/stalactite/stalactite.png" id="1_cyiyc"]
-[ext_resource type="Script" path="res://traps/stalactite/stalactite.gd" id="1_nar6n"]
+[ext_resource type="Script" uid="uid://0js1dwdlhqeb" path="res://traps/stalactite/stalactite.gd" id="1_nar6n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6qh3d"]
 size = Vector2(100, 1000)

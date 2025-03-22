@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bs8pc5d6mus8s"]
 
 [ext_resource type="Texture2D" uid="uid://4picxs30bdlv" path="res://items/coin/coins.png" id="1_jdf0n"]
-[ext_resource type="Script" path="res://items/coin/coin.gd" id="1_m270v"]
+[ext_resource type="Script" uid="uid://dbp6led4ifj0x" path="res://items/coin/coin.gd" id="1_m270v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3rsxi"]
 radius = 30.0
@@ -69,9 +69,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qdmw1"]
 _data = {
-"RESET": SubResource("Animation_u318q"),
-"move_up_down": SubResource("Animation_kqlt6"),
-"rotate": SubResource("Animation_fcvvt")
+&"RESET": SubResource("Animation_u318q"),
+&"move_up_down": SubResource("Animation_kqlt6"),
+&"rotate": SubResource("Animation_fcvvt")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wrgvl"]

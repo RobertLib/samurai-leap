@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkkkc5vkfdm3p"]
 
-[ext_resource type="Script" path="res://traps/boulder/boulder.gd" id="1_tvdre"]
+[ext_resource type="Script" uid="uid://ckrai7lxxi150" path="res://traps/boulder/boulder.gd" id="1_tvdre"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6l5hx"]
 radius = 17.0

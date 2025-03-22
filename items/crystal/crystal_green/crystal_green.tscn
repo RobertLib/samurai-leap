@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c4sh53jw7gm4u"]
 
 [ext_resource type="Texture2D" uid="uid://l1tmdgabcnce" path="res://items/crystal/crystal_green/crystal_green.png" id="1_ah7e0"]
-[ext_resource type="Script" path="res://items/crystal/crystal.gd" id="1_tqa16"]
+[ext_resource type="Script" uid="uid://b0ik7cq1rflfl" path="res://items/crystal/crystal.gd" id="1_tqa16"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bie6a"]
 radius = 13.0

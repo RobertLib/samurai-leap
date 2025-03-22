@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://4djligpdxe7a"]
 
-[ext_resource type="Script" path="res://environment/bamboo_tree/bamboo_tree.gd" id="1_6hk1t"]
-[ext_resource type="Shader" path="res://environment/bamboo_tree/bamboo_tree.gdshader" id="2_ycryk"]
+[ext_resource type="Script" uid="uid://b3iyj5odmb7ia" path="res://environment/bamboo_tree/bamboo_tree.gd" id="1_6hk1t"]
+[ext_resource type="Shader" uid="uid://bsassyo5fhnpt" path="res://environment/bamboo_tree/bamboo_tree.gdshader" id="2_ycryk"]
 [ext_resource type="Texture2D" uid="uid://2ry74evy04n8" path="res://environment/bamboo_tree/bamboo_tree.png" id="3_0b70p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u0o66"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=54 format=3 uid="uid://c4jkl1ksuippr"]
 
 [ext_resource type="Texture2D" uid="uid://bb1dlv3uyhpsu" path="res://player/player.png" id="1_sv3b6"]
-[ext_resource type="Script" path="res://player/player.gd" id="1_ukkd8"]
+[ext_resource type="Script" uid="uid://bdh2bhfyxb0a" path="res://player/player.gd" id="1_ukkd8"]
 [ext_resource type="Texture2D" uid="uid://dn3w1odfov4p0" path="res://player/sword_slash.png" id="3_cgkf8"]
 [ext_resource type="Texture2D" uid="uid://dauijmfikxd8i" path="res://player/player_face_injury.png" id="3_wnys3"]
 
@@ -5109,23 +5109,23 @@ tracks/36/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kcaba"]
 _data = {
-"RESET": SubResource("Animation_dd1p2"),
-"attack_left": SubResource("Animation_ow5xb"),
-"attack_right": SubResource("Animation_fysnp"),
-"bottom_attack_left": SubResource("Animation_nfcft"),
-"bottom_attack_right": SubResource("Animation_m8mbk"),
-"idle_left": SubResource("Animation_wduj6"),
-"idle_right": SubResource("Animation_8lsp4"),
-"jump_left": SubResource("Animation_6yeno"),
-"jump_right": SubResource("Animation_g4f6t"),
-"kneeling_left": SubResource("Animation_e75ig"),
-"kneeling_right": SubResource("Animation_gea8a"),
-"throw_left": SubResource("Animation_s5cqf"),
-"throw_right": SubResource("Animation_m3t78"),
-"walk_left": SubResource("Animation_meofh"),
-"walk_right": SubResource("Animation_lfqth"),
-"walking_attack_left": SubResource("Animation_ftj4i"),
-"walking_attack_right": SubResource("Animation_xrnxv")
+&"RESET": SubResource("Animation_dd1p2"),
+&"attack_left": SubResource("Animation_ow5xb"),
+&"attack_right": SubResource("Animation_fysnp"),
+&"bottom_attack_left": SubResource("Animation_nfcft"),
+&"bottom_attack_right": SubResource("Animation_m8mbk"),
+&"idle_left": SubResource("Animation_wduj6"),
+&"idle_right": SubResource("Animation_8lsp4"),
+&"jump_left": SubResource("Animation_6yeno"),
+&"jump_right": SubResource("Animation_g4f6t"),
+&"kneeling_left": SubResource("Animation_e75ig"),
+&"kneeling_right": SubResource("Animation_gea8a"),
+&"throw_left": SubResource("Animation_s5cqf"),
+&"throw_right": SubResource("Animation_m3t78"),
+&"walk_left": SubResource("Animation_meofh"),
+&"walk_right": SubResource("Animation_lfqth"),
+&"walking_attack_left": SubResource("Animation_ftj4i"),
+&"walking_attack_right": SubResource("Animation_xrnxv")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_euf0n"]
