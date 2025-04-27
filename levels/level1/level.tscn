@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://cvueq8wcb6yit"]
+[gd_scene load_steps=28 format=4 uid="uid://cvueq8wcb6yit"]
 
 [ext_resource type="Texture2D" uid="uid://bwbpgrmm0n328" path="res://levels/tile_ground.png" id="1_icdpp"]
 [ext_resource type="Texture2D" uid="uid://4usub0lfqc5h" path="res://levels/background.png" id="1_jv3xj"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://j2foysh0xo1a" path="res://environment/stone/stone.tscn" id="11_waa2t"]
 [ext_resource type="Texture2D" uid="uid://dntefnyt52b3b" path="res://levels/level1/field.png" id="12_d2ejs"]
 [ext_resource type="Texture2D" uid="uid://e23oenyhwd2m" path="res://levels/level1/marketplace.png" id="13_3r5fn"]
+[ext_resource type="Texture2D" uid="uid://nnj6jeq41y8p" path="res://levels/bamboo_assets.png" id="17_f8yee"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eg17b"]
 texture = ExtResource("1_icdpp")
@@ -917,6 +918,418 @@ position = Vector2(4240, 490)
 
 [node name="Bamboo3" parent="Environment/Bamboos" instance=ExtResource("6_6hk6i")]
 position = Vector2(4480, 490)
+
+[node name="Bamboos2" type="Node2D" parent="Environment"]
+z_index = -1
+
+[node name="Bamboo" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(1168, 500)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo2" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(1448, 500)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo3" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(1784, 504)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo4" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(2344, 504)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo5" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(2760, 500)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo6" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(3312, 500)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo7" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(3568, 436)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo8" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(3928, 500)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo9" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(4016, 504)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo10" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(4760, 496)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo11" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(4856, 496)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo12" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(5312, 504)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo13" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(5648, 500)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo14" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(6544, 500)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo15" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(6672, 500)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo16" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(7208, 500)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo17" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(7784, 500)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo18" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(8792, 500)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo19" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(8992, 500)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo20" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(9576, 504)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo21" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(10272, 504)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo22" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(10384, 500)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo23" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(10696, 504)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo24" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(11336, 500)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo25" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(12496, 1070)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo26" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(12792, 1072)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo27" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(13952, 1072)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo28" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(14096, 1072)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo29" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(14744, 1072)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo30" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(15152, 1072)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(22, 257, 219, 464)
+
+[node name="Bamboo31" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(368, 464)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Bamboo32" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(1888, 472)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Bamboo33" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(2512, 472)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Bamboo34" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(3032, 464)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Bamboo35" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(3808, 472)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Bamboo36" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(4648, 464)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Bamboo37" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(5472, 456)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Bamboo38" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(6792, 464)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Bamboo39" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(7897, 464)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Bamboo40" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(8888, 472)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Bamboo41" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(9456, 464)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Bamboo42" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(10120, 464)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Bamboo43" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(10824, 464)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Bamboo44" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(12648, 1040)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Bamboo45" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(13824, 1040)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Bamboo46" type="Sprite2D" parent="Environment/Bamboos2"]
+position = Vector2(14944, 1040)
+scale = Vector2(0.582192, 0.582192)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(260, 129, 212, 592)
+
+[node name="Stones" type="Node2D" parent="Environment"]
+z_index = -1
+
+[node name="Stone" type="Sprite2D" parent="Environment/Stones"]
+position = Vector2(1336, 611)
+scale = Vector2(0.291096, 0.291096)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(106, 758, 350, 193)
+
+[node name="Stone2" type="Sprite2D" parent="Environment/Stones"]
+position = Vector2(2384, 610)
+scale = Vector2(0.291096, 0.291096)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(106, 758, 350, 193)
+
+[node name="Stone3" type="Sprite2D" parent="Environment/Stones"]
+position = Vector2(4104, 624)
+scale = Vector2(0.291096, 0.291096)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(106, 758, 350, 193)
+
+[node name="Stone4" type="Sprite2D" parent="Environment/Stones"]
+position = Vector2(4760, 624)
+scale = Vector2(0.291096, 0.291096)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(106, 758, 350, 193)
+
+[node name="Stone5" type="Sprite2D" parent="Environment/Stones"]
+position = Vector2(7168, 611)
+scale = Vector2(0.291096, 0.291096)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(106, 758, 350, 193)
+
+[node name="Stone6" type="Sprite2D" parent="Environment/Stones"]
+position = Vector2(8712, 616)
+scale = Vector2(0.291096, 0.291096)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(106, 758, 350, 193)
+
+[node name="Stone7" type="Sprite2D" parent="Environment/Stones"]
+position = Vector2(10096, 608)
+scale = Vector2(0.291096, 0.291096)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(106, 758, 350, 193)
+
+[node name="Stone8" type="Sprite2D" parent="Environment/Stones"]
+position = Vector2(11232, 611)
+scale = Vector2(0.291096, 0.291096)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(106, 758, 350, 193)
+
+[node name="Stone9" type="Sprite2D" parent="Environment/Stones"]
+position = Vector2(12400, 1184)
+scale = Vector2(0.291096, 0.291096)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(106, 758, 350, 193)
+
+[node name="Stone10" type="Sprite2D" parent="Environment/Stones"]
+position = Vector2(13416, 1185)
+scale = Vector2(0.291096, 0.291096)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(106, 758, 350, 193)
+
+[node name="Stone11" type="Sprite2D" parent="Environment/Stones"]
+position = Vector2(14240, 1184)
+scale = Vector2(0.291096, 0.291096)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(106, 758, 350, 193)
+
+[node name="Stone12" type="Sprite2D" parent="Environment/Stones"]
+position = Vector2(15272, 1185)
+scale = Vector2(0.291096, 0.291096)
+texture = ExtResource("17_f8yee")
+region_enabled = true
+region_rect = Rect2(106, 758, 350, 193)
 
 [node name="Trees" type="Node2D" parent="Environment"]
 
